@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>953689908088-akcrh9mva6cevp9q4f5cu3te6qp7vrfs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.953689908088-akcrh9mva6cevp9q4f5cu3te6qp7vrfs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA0xjdD9ulXLfgycDQQ3ijkyeCBQ382Ynw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>953689908088</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>rmit.edu.Netflix-Clone</string>
+	<key>PROJECT_ID</key>
+	<string>netflix-clone-9ef12</string>
+	<key>STORAGE_BUCKET</key>
+	<string>netflix-clone-9ef12.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:953689908088:ios:172d96dee38757b94d5e8d</string>
+</dict>
+</plist>
