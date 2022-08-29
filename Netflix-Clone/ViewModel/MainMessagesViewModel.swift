@@ -12,7 +12,7 @@ import Firebase
 class MainMessagesViewModel: ObservableObject {
 
     @Published var errorMessage = ""
-    @Published var chatUser: ChatUser?
+    @Published var chatUser: User?
     @Published var isUserCurrentlyLoggedOut = false
     
     // MARK: Initialize

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatUser: Decodable{
+struct User: Decodable{
     let uid, email, profileImageUrl: String
     
     init(data: [String: Any]) {

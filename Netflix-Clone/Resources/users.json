@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Sarah Conner",
+        "age": 60,
+        "description": "I am Sarah Conner",
+        "imageName": "avatar1"
+    },
+    {
+        "id": 2,
+        "name": "John Conner",
+        "age": 34,
+        "description": "I am John Conner",
+        "imageName": "avatar2"
+    },
+    {
+        "id": 3,
+        "name": "Jimmy Kimmel",
+        "age": 32,
+        "description": "I am Jimmy Kimmel",
+        "imageName": "avatar3"
+    },
+    {
+        "id": 4,
+        "name": "Gordon Ramsay",
+        "age": 56,
+        "description": "I am Gordon Ramsay",
+        "imageName": "avatar4"
+    },
+    {
+        "id": 5,
+        "name": "Michael Jackson",
+        "age": 35,
+        "description": "I am Michael Jackson",
+        "imageName": "avatar5"
+    }
+]
