@@ -21,11 +21,11 @@ import FirebaseFirestore
 struct LoginView: View {
     
     // MARK: - Properties
-    
+    let didCompleteLoginProcess: () -> ()
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
-    
+    @State var changeView = false
     @State var shouldShowImagePicker = false
     
     // MARK: - Body
@@ -92,6 +92,8 @@ struct LoginView: View {
                                 .font(.system(size: 14, weight: .semibold))
                             Spacer()
                         } .background(Color.blue)
+                    }.sheet(isPresented: $changeView) {
+                        MainMessagesView()
                     }
                     
                     Text(self.loginStatusMessage)
@@ -158,7 +160,12 @@ struct LoginView: View {
             
             self.loginStatusMessage = "Successsfully logged in as user: \(result?.user.uid  ?? "")"
             
-            self.persistImageToStorage()
+            self.didCompleteLoginProcess()
+            //self.changeView.toggle()
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = UIHostingController(rootView: MainMessagesView())
+                window.makeKeyAndVisible()
+            }
         }
     }
     
@@ -203,6 +210,8 @@ struct LoginView: View {
                 }
 
                 print("Success")
+                
+                self.didCompleteLoginProcess()
             }
     }
     
@@ -210,6 +219,6 @@ struct LoginView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(didCompleteLoginProcess: {})
     }
 }

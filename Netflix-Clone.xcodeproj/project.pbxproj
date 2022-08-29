@@ -14,6 +14,10 @@
 		7596C2FB28BCFB1E00D559BE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7596C2FA28BCFB1E00D559BE /* FirebaseStorage */; };
 		7596C2FD28BD02EE00D559BE /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596C2FC28BD02EE00D559BE /* MainMessagesView.swift */; };
 		7596C30028BD03ED00D559BE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596C2FF28BD03ED00D559BE /* FirebaseManager.swift */; };
+		7596C30328BD06C200D559BE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7596C30228BD06C200D559BE /* SDWebImageSwiftUI */; };
+		7596C30628BD189000D559BE /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596C30528BD189000D559BE /* ChatUser.swift */; };
+		7596C30828BD18D400D559BE /* MainMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596C30728BD18D400D559BE /* MainMessagesViewModel.swift */; };
+		7596C30B28BD238F00D559BE /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596C30A28BD238F00D559BE /* SplashScreenView.swift */; };
 		75B18A4C28BCE340000EBAB9 /* Netflix_CloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B18A4B28BCE340000EBAB9 /* Netflix_CloneApp.swift */; };
 		75B18A5028BCE343000EBAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B18A4F28BCE343000EBAB9 /* Assets.xcassets */; };
 		75B18A5328BCE343000EBAB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B18A5228BCE343000EBAB9 /* Preview Assets.xcassets */; };
@@ -25,6 +29,9 @@
 		7596C2F328BCF1EF00D559BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7596C2FC28BD02EE00D559BE /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		7596C2FF28BD03ED00D559BE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		7596C30528BD189000D559BE /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		7596C30728BD18D400D559BE /* MainMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesViewModel.swift; sourceTree = "<group>"; };
+		7596C30A28BD238F00D559BE /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		75B18A4828BCE340000EBAB9 /* Netflix-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B18A4B28BCE340000EBAB9 /* Netflix_CloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netflix_CloneApp.swift; sourceTree = "<group>"; };
 		75B18A4F28BCE343000EBAB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7596C30328BD06C200D559BE /* SDWebImageSwiftUI in Frameworks */,
 				7596C2F728BCFB1E00D559BE /* FirebaseAuth in Frameworks */,
 				7596C2F928BCFB1E00D559BE /* FirebaseFirestore in Frameworks */,
 				7596C2FB28BCFB1E00D559BE /* FirebaseStorage in Frameworks */,
@@ -62,6 +70,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		7596C30428BD187500D559BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7596C30528BD189000D559BE /* ChatUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7596C30928BD1C1000D559BE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7596C30728BD18D400D559BE /* MainMessagesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		75B18A3F28BCE340000EBAB9 = {
 			isa = PBXGroup;
 			children = (
@@ -81,8 +105,10 @@
 		75B18A4A28BCE340000EBAB9 /* Netflix-Clone */ = {
 			isa = PBXGroup;
 			children = (
-				7596C2FE28BD03DD00D559BE /* Utils */,
 				7596C2F328BCF1EF00D559BE /* GoogleService-Info.plist */,
+				7596C30928BD1C1000D559BE /* ViewModel */,
+				7596C30428BD187500D559BE /* Model */,
+				7596C2FE28BD03DD00D559BE /* Utils */,
 				7596C2F028BCEED000D559BE /* Components */,
 				75B18A5E28BCEADD000EBAB9 /* Views */,
 				75B18A4B28BCE340000EBAB9 /* Netflix_CloneApp.swift */,
@@ -105,6 +131,7 @@
 			children = (
 				75B18A6128BCEBAF000EBAB9 /* LoginView.swift */,
 				7596C2FC28BD02EE00D559BE /* MainMessagesView.swift */,
+				7596C30A28BD238F00D559BE /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,6 +156,7 @@
 				7596C2F628BCFB1E00D559BE /* FirebaseAuth */,
 				7596C2F828BCFB1E00D559BE /* FirebaseFirestore */,
 				7596C2FA28BCFB1E00D559BE /* FirebaseStorage */,
+				7596C30228BD06C200D559BE /* SDWebImageSwiftUI */,
 			);
 			productName = "Netflix-Clone";
 			productReference = 75B18A4828BCE340000EBAB9 /* Netflix-Clone.app */;
@@ -160,6 +188,7 @@
 			mainGroup = 75B18A3F28BCE340000EBAB9;
 			packageReferences = (
 				7596C2F528BCFB1E00D559BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7596C30128BD06C200D559BE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 75B18A4928BCE340000EBAB9 /* Products */;
 			projectDirPath = "";
@@ -188,11 +217,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7596C30628BD189000D559BE /* ChatUser.swift in Sources */,
 				7596C2F228BCEEEF00D559BE /* ImagePicker.swift in Sources */,
 				7596C2FD28BD02EE00D559BE /* MainMessagesView.swift in Sources */,
 				7596C30028BD03ED00D559BE /* FirebaseManager.swift in Sources */,
 				75B18A6228BCEBAF000EBAB9 /* LoginView.swift in Sources */,
 				75B18A4C28BCE340000EBAB9 /* Netflix_CloneApp.swift in Sources */,
+				7596C30828BD18D400D559BE /* MainMessagesViewModel.swift in Sources */,
+				7596C30B28BD238F00D559BE /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +435,14 @@
 				kind = branch;
 			};
 		};
+		7596C30128BD06C200D559BE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -420,6 +460,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7596C2F528BCFB1E00D559BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		7596C30228BD06C200D559BE /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7596C30128BD06C200D559BE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

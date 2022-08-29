@@ -6,21 +6,35 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MainMessagesView: View {
 
+    // MARK: Properties
     @State var shouldShowLogOutOptions = false
 
+    @ObservedObject private var vm = MainMessagesViewModel()
+    
+    // MARK: Custom Navigation Bar
     private var customNavBar: some View {
         HStack(spacing: 16) {
 
-            Image(systemName: "person.fill")
-                .font(.system(size: 34, weight: .heavy))
-
+            // MARK: User Profile Picture
+            WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 44, height: 44)
+                .clipped()
+                .cornerRadius(50)
+                .overlay(RoundedRectangle(cornerRadius: 44)
+                    .stroke(Color(.label),
+                           lineWidth: 1))
             VStack(alignment: .leading, spacing: 4) {
-                Text("USERNAME")
+                let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
+                
+                Text("\(email)")
                     .font(.system(size: 24, weight: .bold))
-
+                
                 HStack {
                     Circle()
                         .foregroundColor(.green)
@@ -46,12 +60,20 @@ struct MainMessagesView: View {
             .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
                 .destructive(Text("Sign Out"), action: {
                     print("handle sign out")
+                    vm.handleSignOut()
                 }),
                     .cancel()
             ])
         }
+        .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
+            LoginView(didCompleteLoginProcess: {
+                self.vm.isUserCurrentlyLoggedOut = false
+                self.vm.fetchCurrentUser()
+            })
+        }
     }
 
+    // MARK: Body
     var body: some View {
         NavigationView {
 
@@ -70,6 +92,17 @@ struct MainMessagesView: View {
             ForEach(0..<10, id: \.self) { num in
                 VStack {
                     HStack(spacing: 16) {
+                        
+//                        WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+//                            .resizable()
+//                            .resizable()
+//                            .scaledToFill()
+//                            .frame(width: 44, height: 44)
+//                            .clipped()
+//                            .cornerRadius(50)
+//                            .overlay(RoundedRectangle(cornerRadius: 44)
+//                                .stroke(Color(.label),
+//                                       lineWidth: 1))
                         Image(systemName: "person.fill")
                             .font(.system(size: 32))
                             .padding(8)
