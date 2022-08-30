@@ -35,7 +35,7 @@ struct NavigationBar: View {
                             .foregroundColor(Color.white)
                     }
                 // MARK: User Profile Picture
-                NavigationLink{ Home().navigationBarTitle("")
+                NavigationLink{ ProfileSettingsView().navigationBarTitle("")
                         .navigationBarHidden(true)
                     .navigationBarTitleDisplayMode(.inline)} label: {
                         WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))

@@ -23,10 +23,11 @@ struct Home: View {
                         Image("picture2")
                             .resizable()
                             .scaledToFill()
-                            .frame(alignment: .topTrailing)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
                         }
                     }
                     NavigationBar()
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     Spacer()
                         .frame(height: 450)
                         VStack{
@@ -183,7 +184,7 @@ struct Home: View {
                     
                 }
                 
-                .frame(maxHeight: .infinity, alignment: .top)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
