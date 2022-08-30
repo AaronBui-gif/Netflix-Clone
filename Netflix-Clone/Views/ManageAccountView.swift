@@ -118,6 +118,20 @@ struct ManageAccountView: View {
                             Spacer()
                         } .background(Color.blue)
                     }
+                    
+                    // MARK: - Submit button
+                    Button {
+                        deleteUser()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Delete")
+                                .foregroundColor(.red)
+                                .padding(.vertical, 10)
+                                .font(.system(size: 14, weight: .semibold))
+                            Spacer()
+                        } .background(Color.blue)
+                    }
                 }
                 
                 
@@ -179,7 +193,27 @@ struct ManageAccountView: View {
                 }
             }
     }
+    
+    // MARK: Delete User Function
+    private func deleteUser() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        FirebaseManager.shared.auth.currentUser?.delete() { err in
+                if let err = err {
+                    print(err)
+                    self.saveStatusMessage = "\(err)"
+                    return
+                }
+
+                print("Success")
+                if let window = UIApplication.shared.windows.first {
+                    window.rootViewController = UIHostingController(rootView: LoginView(didCompleteLoginProcess: {}))
+                    window.makeKeyAndVisible()
+                }
+            }
+    }
 }
+
+
 
 struct ManageAccountView_Previews: PreviewProvider {
     static var previews: some View {

@@ -166,6 +166,8 @@ struct LoginView: View {
                 window.rootViewController = UIHostingController(rootView: Home())
                 window.makeKeyAndVisible()
             }
+        
+            
         }
     }
     
