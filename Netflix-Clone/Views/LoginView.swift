@@ -38,9 +38,12 @@ struct LoginView: View {
             
             ZStack {
                 
+                
+                // MARK: Background Image
                 ZStack {
                     Image("login-background")
                         .resizable()
+                        .frame(width: 500, height: 800)
                         .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea(.all)
                     
@@ -64,11 +67,6 @@ struct LoginView: View {
 //                    Text("Create Account")
 //                        .tag(false)
 //                }.pickerStyle(SegmentedPickerStyle())
-                
-                Text("Login")
-                    .font(.system(size: 40))
-                    .fontWeight(.bold)
-                    
                 
                 // MARK: - User Image
                 if !isLoginMode {
@@ -102,14 +100,16 @@ struct LoginView: View {
                         .padding(.horizontal, 20)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                        .foregroundColor(.white)
+                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                         
                       
                     
                     SecureField("Password", text: $password)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                        .foregroundColor(.white)
+                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                        
                 }
                 .padding(.bottom, 10)
@@ -130,7 +130,8 @@ struct LoginView: View {
                         Spacer()
                     }
                     
-                    .background(Color("gray"))
+                    .background(Color("black"))
+                    .border(.white, width:4)
                     .cornerRadius(2)
                     .opacity(0.85)
 //                    .padding(.horizontal, 40)
@@ -139,7 +140,7 @@ struct LoginView: View {
                 }
                 
                 HStack {
-                    Text("Don't have an account?")
+                    Text("New to Netflix?")
                     Text("Sign up")
                         
                 }
