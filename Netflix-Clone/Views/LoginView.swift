@@ -22,98 +22,146 @@ struct LoginView: View {
     
     // MARK: - Properties
     let didCompleteLoginProcess: () -> ()
-    @State var isLoginMode = false
+    @State var isLoginMode = true
     @State var email = ""
     @State var password = ""
     @State var changeView = false
     @State var shouldShowImagePicker = false
     
-    // MARK: - Body
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                
-                VStack (spacing: 16){
-                    // MARK: - Choosing Login or Sign up
-                    Picker(selection: $isLoginMode, label: Text("Picker here")) {
-                        Text("Login")
-                            .tag(true)
-                        Text("Create Account")
-                            .tag(false)
-                    }.pickerStyle(SegmentedPickerStyle())
-                    
-                    
-                    // MARK: - User Image
-                    if !isLoginMode {
-                        Button {
-                            shouldShowImagePicker.toggle()
-                        } label: {
-                            VStack {
-                                if let image = self.image {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 128, height: 128)
-                                        .cornerRadius(64)
-                                } else {
-                                    Image(systemName: "person.fill")
-                                        .font(.system(size: 64))
-                                        .padding()
-                                        .foregroundColor(Color(.label))
-                                }
-                            }
-                            .overlay(RoundedRectangle(cornerRadius: 64)
-                                .stroke(Color.black, lineWidth: 3)
-                            )
-                        }
-                    }
-                    
-                    // MARK: - Text Field for email and password
-                    Group {
-                        TextField("Email", text: $email)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                        
-                        SecureField("Password", text: $password)
-                        
-                    }
-                    .padding(12)
-                    .background(Color.white)
-                    
-                    // MARK: - Submit button
-                    Button {
-                        handleAction()
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Text(isLoginMode ? "Log In" : "Create Account")
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .font(.system(size: 14, weight: .semibold))
-                            Spacer()
-                        } .background(Color.blue)
-                    }.sheet(isPresented: $changeView) {
-                        MainMessagesView()
-                    }
-                    
-                    Text(self.loginStatusMessage)
-                        .foregroundColor(.red)
-                } // VStack
-                .padding()
-            } // Navigation View
-            .navigationTitle(isLoginMode ? "Log In" : "Create Account")
-            .background(Color(.init(white: 0, alpha: 0.05))
-                .ignoresSafeArea())
-            
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-            ImagePicker(image: $image)
-        }
-    }
-    
     // MARK: Image
     @State var image: UIImage?
+    
+    // MARK: - Body
+    var body: some View {
+        
+        
+            
+            ZStack {
+                
+                ZStack {
+                    Image("login-background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea(.all)
+                    
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: .black, location: 0),
+                            .init(color: .black.opacity(0.2), location: 1)]),
+                            startPoint: .bottom,
+                            endPoint: .top
+                    )
+                    .ignoresSafeArea()
+                }
+                
+                
+        
+            VStack (spacing: 16){
+//                // MARK: - Choosing Login or Sign up
+//                Picker(selection: $isLoginMode, label: Text("Picker here")) {
+//                    Text("Login")
+//                        .tag(true)
+//                    Text("Create Account")
+//                        .tag(false)
+//                }.pickerStyle(SegmentedPickerStyle())
+                
+                Text("Login")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    
+                
+                // MARK: - User Image
+                if !isLoginMode {
+                    Button {
+                        shouldShowImagePicker.toggle()
+                    } label: {
+                        VStack {
+                            if let image = self.image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 128, height: 128)
+                                    .cornerRadius(64)
+                            } else {
+                                Image(systemName: "person.fill")
+                                    .font(.system(size: 64))
+                                    .padding()
+                                    .foregroundColor(Color(.label))
+                            }
+                        }
+                        .overlay(RoundedRectangle(cornerRadius: 64)
+                            .stroke(Color.black, lineWidth: 3)
+                        )
+                    }
+                }
+                
+                // MARK: - Text Field for email and password
+                VStack (spacing: 18)  {
+                    TextField("Email", text: $email)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                        
+                      
+                    
+                    SecureField("Password", text: $password)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                       
+                }
+                .padding(.bottom, 10)
+                .padding(.top, 20)
+//                .padding(12)
+//                .background(Color.white)
+                
+                // MARK: - Submit button
+                Button {
+                    handleAction()
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text(isLoginMode ? "Enjoy your movie night!" : "Create Account")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 16)
+                            .font(.system(size: 16, weight: .bold))
+                        Spacer()
+                    }
+                    
+                    .background(Color("gray"))
+                    .cornerRadius(2)
+                    .opacity(0.85)
+//                    .padding(.horizontal, 40)
+                }.sheet(isPresented: $changeView) {
+                    MainMessagesView()
+                }
+                
+                HStack {
+                    Text("Don't have an account?")
+                    Text("Sign up")
+                        
+                }
+               
+                
+                Text(self.loginStatusMessage)
+                    .foregroundColor(.red)
+            }
+                .padding(.horizontal, 72)
+                
+            }
+            .foregroundColor(.white)
+            .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+                ImagePicker(image: $image)
+            }
+            
+        
+       
+        
+    }
+    
+    
     
     // MARK: Function handle login
     private func handleAction() {
