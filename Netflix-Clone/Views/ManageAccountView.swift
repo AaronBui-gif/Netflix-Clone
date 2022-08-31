@@ -31,28 +31,48 @@ struct ManageAccountView: View {
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     
-    // MARL: Custom Navigation Bar
-    var BackButton: some View { Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-    }) {
-        HStack{
-            Image(systemName: "arrow.backward")
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-            Text("Manage Accounts")
-                .foregroundColor(.white)
-        }
-    }
-    }
-        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     
-    
+       // MARK: Custom Navigation Bar
+       private var customNavBar: some View {
+           
+           HStack(spacing: 16) {
+               NavigationLink{ ProfileSettingsView().navigationBarTitle("")
+                       .navigationBarHidden(true)
+                   .navigationBarTitleDisplayMode(.inline)} label: {
+               
+                  HStack{
+                      Image(systemName: "arrow.backward")
+                          .aspectRatio(contentMode: .fit)
+                          .foregroundColor(.white)
+                  }
+              }
+               Text("Manage Accounts")
+                   .foregroundColor(.white)
+               Spacer().frame(width:100)
+               
+               // MARK: - Save button
+               Button {
+                   persistImageToStorage()
+               } label: {
+                   HStack {
+                       Text("Save")
+                           .foregroundColor(.green)
+                           .font(.system(size: 14, weight: .semibold))
+                       
+                   }
+               }
+           } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+       }
+           
     // MARK: Body
     var body: some View {
         NavigationView{
             ZStack{
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 15) {
+                    
+                    // MARK: Custom Navigation Bar
+                    customNavBar
                     
                     // MARK: User Profile Picture
                         Button {
@@ -73,7 +93,7 @@ struct ManageAccountView: View {
                                         .clipped()
                                         .cornerRadius(20)
                                 }
-                            }
+                            } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
 
                         }
                     
@@ -84,7 +104,7 @@ struct ManageAccountView: View {
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .frame(width: 200, alignment: .center)
-                        .foregroundColor(Color.red)
+                        .foregroundColor(Color.black)
                         .background(Color.white)
                     
                     Spacer()
@@ -107,20 +127,6 @@ struct ManageAccountView: View {
                     
                     // MARK: - Submit button
                     Button {
-                        persistImageToStorage()
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Text("Save")
-                                .foregroundColor(.green)
-                                .padding(.vertical, 10)
-                                .font(.system(size: 14, weight: .semibold))
-                            Spacer()
-                        } .background(Color.blue)
-                    }
-                    
-                    // MARK: - Submit button
-                    Button {
                         deleteUser()
                     } label: {
                         HStack {
@@ -134,14 +140,11 @@ struct ManageAccountView: View {
                     }
                 }
                 
-                
-                
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             }.navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading: BackButton)
                 .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                     ImagePicker(image: $image)
+                    
                 }
         }
     }
@@ -196,7 +199,6 @@ struct ManageAccountView: View {
     
     // MARK: Delete User Function
     private func deleteUser() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         FirebaseManager.shared.auth.currentUser?.delete() { err in
                 if let err = err {
                     print(err)

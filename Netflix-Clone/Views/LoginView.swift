@@ -33,12 +33,7 @@ struct LoginView: View {
     
     // MARK: - Body
     var body: some View {
-        
-        
-            
             ZStack {
-                
-                
                 // MARK: Background Image
                 ZStack {
                     Image("login-background")
@@ -100,7 +95,7 @@ struct LoginView: View {
                         .padding(.horizontal, 20)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                         
                       
@@ -108,7 +103,7 @@ struct LoginView: View {
                     SecureField("Password", text: $password)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                        
                 }

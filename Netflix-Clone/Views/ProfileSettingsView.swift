@@ -23,6 +23,26 @@ struct ProfileSettingsView: View {
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     
+    
+    // MARK: Custom Navigation Bar
+    private var customNavBar: some View {
+        
+        HStack(spacing: 16) {
+            NavigationLink{ Home().navigationBarTitle("")
+                    .navigationBarHidden(true)
+                .navigationBarTitleDisplayMode(.inline)} label: {
+                    
+                    HStack{
+                        Image(systemName: "arrow.backward")
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                    }
+                }
+            Text("Profiles & Other Accounts")
+                .foregroundColor(.white)
+        } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+    }
+    
     // MARL: Custom Navigation Bar
     var BackButton: some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -43,7 +63,7 @@ struct ProfileSettingsView: View {
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 30) {
                     
-                    
+                    customNavBar
                     WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                         .resizable()
                         .scaledToFill()
@@ -144,7 +164,6 @@ struct ProfileSettingsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: BackButton)
         }
     }
 }
