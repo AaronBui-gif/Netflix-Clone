@@ -201,8 +201,8 @@ struct Home_Previews: PreviewProvider {
             .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
             .previewDisplayName("iPhone 13")
 
-        Home()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro Max"))
-            .previewDisplayName("iPhone 13 Pro Max")
+//        Home()
+//            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro Max"))
+//            .previewDisplayName("iPhone 13 Pro Max")
     }
 }
