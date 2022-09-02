@@ -26,7 +26,7 @@ struct SplashScreenView: View {
             } else {
                 VStack {
                     VStack {
-                        Image("Icon")
+                        Image("icon")
                             .resizable()
                             .scaledToFit()
                             .aspectRatio(contentMode: .fit)
