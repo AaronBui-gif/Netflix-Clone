@@ -1,30 +1,13 @@
-/*
- RMIT University Vietnam
- Course: COSC2659 iOS Development
- Semester: 2022B
- Assessment: Assignment 3
- Author:
-    Bui Thanh Huy
-    Hoang Minh Quan
-    Nguyen Quoc Minh
- ID:
-    s3740934
-    s3754450
-    s3758994
- Created  date: 29/08/2022
- Last modified: 29/08/2022
- Acknowledgement:
- 
- - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
- */
+//
+//  SignUpView.swift
+//  Netflix-Clone
+//
+//  Created by Hue Pham on 02/09/2022.
+//
 
 import SwiftUI
-import Firebase
-import FirebaseStorage
-import FirebaseFirestore
 
-// MARK: Login View
-struct LoginView: View {
+struct SignUpView: View {
     
     // MARK: - Properties
     let didCompleteLoginProcess: () -> ()
@@ -34,16 +17,14 @@ struct LoginView: View {
     @State var changeView = false
     @State var shouldShowImagePicker = false
     
+    @State var loginStatusMessage = ""
     // MARK: Image
     @State var image: UIImage?
     
     // MARK: - Body
     var body: some View {
-        
-        
-            
+
             ZStack {
-                
                 
                 // MARK: Background Image
                 ZStack {
@@ -66,62 +47,68 @@ struct LoginView: View {
                 
         
             VStack (spacing: 16){
-//                // MARK: - Choosing Login or Sign up
-//                Picker(selection: $isLoginMode, label: Text("Picker here")) {
-//                    Text("Login")
-//                        .tag(true)
-//                    Text("Create Account")
-//                        .tag(false)
-//                }.pickerStyle(SegmentedPickerStyle())
                 
+            
                 // MARK: - User Image
-                if !isLoginMode {
-                    Button {
-                        shouldShowImagePicker.toggle()
-                    } label: {
-                        VStack {
-                            if let image = self.image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 128, height: 128)
-                                    .cornerRadius(64)
-                            } else {
-                                Image(systemName: "person.fill")
-                                    .font(.system(size: 64))
-                                    .padding()
-                                    .foregroundColor(Color(.label))
-                            }
+                Button {
+                    shouldShowImagePicker.toggle()
+                } label: {
+                    VStack {
+                        if let image = self.image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 128, height: 128)
+                                .cornerRadius(64)
+                        } else {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 36))
+                                .padding()
+                                .foregroundColor(Color(.white))
                         }
-                        .overlay(RoundedRectangle(cornerRadius: 64)
-                            .stroke(Color.black, lineWidth: 3)
-                        )
                     }
+                    .overlay(RoundedRectangle(cornerRadius: 64)
+                        .stroke(Color.white, lineWidth: 3)
+                    )
                 }
+
                 
-                // MARK: - Text Field for email and password
+                //Title
+                Text("Sign Up")
+                    .font(.system(size: 42))
+                    .fontWeight(.bold)
+                    .padding(.bottom, 10)
+                
+                //MARK: - Text Field for email and password
                 VStack (spacing: 18)  {
+                    Text("Email")
+                        .font(.system(size: 24))
+                        .fontWeight(.bold)
+                        .padding(.trailing, 265.0)
+                    
                     TextField("Email", text: $email)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 12)
                         .padding(.horizontal, 20)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .foregroundColor(.white)
-                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
-                        
-                      
+                        .foregroundColor(.black)
+                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                        .padding(.bottom, 20)
+                    
+                    Text("Password")
+                        .font(.system(size: 24))
+                        .fontWeight(.bold)
+                        .padding(.trailing, 215.0)
                     
                     SecureField("Password", text: $password)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 12)
                         .padding(.horizontal, 20)
-                        .foregroundColor(.white)
-                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
+                        .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                        .padding(.bottom, 10)
                        
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 20)
                 .padding(.top, 20)
-//                .padding(12)
-//                .background(Color.white)
                 
                 // MARK: - Submit button
                 Button {
@@ -146,8 +133,8 @@ struct LoginView: View {
                 }
                 
                 HStack {
-                    Text("New to Netflix?")
-                    Text("Sign up")
+                    Text("Already a member?")
+                    Text("Login")
                         
                 }
                
@@ -155,7 +142,7 @@ struct LoginView: View {
                 Text(self.loginStatusMessage)
                     .foregroundColor(.red)
             }
-                .padding(.horizontal, 72)
+                .padding(.horizontal, 80)
                 
             }
             .foregroundColor(.white)
@@ -164,24 +151,14 @@ struct LoginView: View {
             }
             
         
-       
         
     }
     
-    
-    
     // MARK: Function handle login
     private func handleAction() {
-        if isLoginMode {
-            loginUser()
-            print("Login Firebase with existing credentials")
-        } else {
-            CreateNewAccount()
-            print("Register a new account")
-        }
+        CreateNewAccount()
+        print("Register a new account")
     }
-    
-    @State var loginStatusMessage = ""
     
     // MARK: Create New Account
     private func CreateNewAccount() {
@@ -198,31 +175,6 @@ struct LoginView: View {
             self.loginStatusMessage = "Successsfully created user: \(result?.user.uid  ?? "")"
             
             self.persistImageToStorage()
-        }
-    }
-    
-    // MARK: Login Account
-    private func loginUser() {
-        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) {
-            result, err in
-            if let err = err {
-                print ("Failed to login user:", err)
-                self.loginStatusMessage = "Failed to login user: \(err)"
-                return
-            }
-            
-            print("Successsfully logged in as user: \(result?.user.uid  ?? "")")
-            
-            self.loginStatusMessage = "Successsfully logged in as user: \(result?.user.uid  ?? "")"
-            
-            self.didCompleteLoginProcess()
-            //self.changeView.toggle()
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = UIHostingController(rootView: Home())
-                window.makeKeyAndVisible()
-            }
-        
-            
         }
     }
     
@@ -271,11 +223,10 @@ struct LoginView: View {
                 self.didCompleteLoginProcess()
             }
     }
-    
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(didCompleteLoginProcess: {})
+        SignUpView(didCompleteLoginProcess: {})
     }
 }

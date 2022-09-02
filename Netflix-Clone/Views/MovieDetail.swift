@@ -145,8 +145,8 @@ struct MovieDetail: View {
                 .padding()
                 
             }
-            .navigationTitle(movie.title).foregroundColor(.white)
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationTitle(movie.title).foregroundColor(.white)
+//            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
         }

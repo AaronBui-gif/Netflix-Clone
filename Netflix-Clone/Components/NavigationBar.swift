@@ -17,7 +17,7 @@ struct NavigationBar: View {
     // MARK: Body
     var body: some View {
         VStack{
-            HStack(spacing: 16) {
+            HStack(alignment: .bottom, spacing: 0) {
                 VStack(alignment: .leading, spacing: 4) {
                     Image("netflix")
                         .resizable()
@@ -26,14 +26,28 @@ struct NavigationBar: View {
                 }
                 Spacer()
                 
-                // MARK: Search Bar
-                NavigationLink{ Home().navigationBarTitle("")
-                        .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
-                        Image(systemName: "magnifyingglass")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(Color.white)
+//                // MARK: Search Bar
+//                NavigationLink{ Home().navigationBarTitle("")
+//                        .navigationBarHidden(true)
+//                    .navigationBarTitleDisplayMode(.inline)} label: {
+//                        Image(systemName: "magnifyingglass")
+//                            .font(.system(size: 24, weight: .bold))
+//                            .foregroundColor(Color.white)
+//                    }
+                
+                // MARK: Screen cast
+                NavigationLink{
+                    Home()
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    Image("screen-cast")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(Color.white)
                     }
+                
+                
                 // MARK: User Profile Picture
                 NavigationLink{ ProfileSettingsView().navigationBarTitle("")
                         .navigationBarHidden(true)
@@ -46,9 +60,10 @@ struct NavigationBar: View {
                             .cornerRadius(15)
                     }
             }
+            .padding(.bottom, 10)
             
             
-            HStack(spacing: 90){
+            HStack(spacing: 70){
                 NavigationLink{ Home().navigationBarTitle("")
                         .navigationBarHidden(true)
                     .navigationBarTitleDisplayMode(.inline)} label: {

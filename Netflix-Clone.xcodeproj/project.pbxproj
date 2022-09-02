@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615A2B5728C1CBD600DAA76B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5628C1CBD600DAA76B /* SignUpView.swift */; };
+		615A2B5928C1CF9500DAA76B /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5828C1CF9400DAA76B /* MainPageView.swift */; };
+		615A2B5D28C1D0B300DAA76B /* FeaturedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5C28C1D0B300DAA76B /* FeaturedItemView.swift */; };
+		615A2B5F28C1FB0100DAA76B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5E28C1FB0100DAA76B /* HomeView.swift */; };
 		758D145C28BD3F39003A4BDC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D145B28BD3F39003A4BDC /* Home.swift */; };
 		758D145E28BD3F48003A4BDC /* NavigationBarLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D145D28BD3F48003A4BDC /* NavigationBarLow.swift */; };
 		758D146028BD3F52003A4BDC /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D145F28BD3F52003A4BDC /* NavigationBar.swift */; };
@@ -42,6 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		615A2B5628C1CBD600DAA76B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		615A2B5828C1CF9400DAA76B /* MainPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		615A2B5C28C1D0B300DAA76B /* FeaturedItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedItemView.swift; sourceTree = "<group>"; };
+		615A2B5E28C1FB0100DAA76B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		758D145B28BD3F39003A4BDC /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		758D145D28BD3F48003A4BDC /* NavigationBarLow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarLow.swift; sourceTree = "<group>"; };
 		758D145F28BD3F52003A4BDC /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
@@ -104,6 +112,7 @@
 		7596C2F028BCEED000D559BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				615A2B5C28C1D0B300DAA76B /* FeaturedItemView.swift */,
 				758D146128BD3F6A003A4BDC /* MovieRow.swift */,
 				758D145F28BD3F52003A4BDC /* NavigationBar.swift */,
 				758D145D28BD3F48003A4BDC /* NavigationBarLow.swift */,
@@ -183,6 +192,7 @@
 		75B18A5E28BCEADD000EBAB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				615A2B5828C1CF9400DAA76B /* MainPageView.swift */,
 				75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */,
 				758D146528BD40A7003A4BDC /* MovieDetail.swift */,
 				758D145B28BD3F39003A4BDC /* Home.swift */,
@@ -191,6 +201,8 @@
 				7596C30A28BD238F00D559BE /* SplashScreenView.swift */,
 				75E94E6028BE2F7D0089507C /* ManageAccountView.swift */,
 				75E94E6228BE36120089507C /* ProfileSettingsView.swift */,
+				615A2B5628C1CBD600DAA76B /* SignUpView.swift */,
+				615A2B5E28C1FB0100DAA76B /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +298,7 @@
 				758D146628BD40A7003A4BDC /* MovieDetail.swift in Sources */,
 				758D146828BD40D9003A4BDC /* ModelData.swift in Sources */,
 				758D146228BD3F6A003A4BDC /* MovieRow.swift in Sources */,
+				615A2B5928C1CF9500DAA76B /* MainPageView.swift in Sources */,
 				7596C2F228BCEEEF00D559BE /* ImagePicker.swift in Sources */,
 				7596C2FD28BD02EE00D559BE /* MainMessagesView.swift in Sources */,
 				758D147728BD4F4E003A4BDC /* NavigationBar2.swift in Sources */,
@@ -298,9 +311,12 @@
 				758D146428BD3F71003A4BDC /* Movie.swift in Sources */,
 				75B18A4C28BCE340000EBAB9 /* Netflix_CloneApp.swift in Sources */,
 				7596C30828BD18D400D559BE /* MainMessagesViewModel.swift in Sources */,
+				615A2B5728C1CBD600DAA76B /* SignUpView.swift in Sources */,
 				75E94E6328BE36120089507C /* ProfileSettingsView.swift in Sources */,
 				758D145E28BD3F48003A4BDC /* NavigationBarLow.swift in Sources */,
 				7596C30B28BD238F00D559BE /* SplashScreenView.swift in Sources */,
+				615A2B5F28C1FB0100DAA76B /* HomeView.swift in Sources */,
+				615A2B5D28C1D0B300DAA76B /* FeaturedItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

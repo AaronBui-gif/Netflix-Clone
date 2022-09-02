@@ -26,6 +26,7 @@ struct Home: View {
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
                         }
                     }
+                    .ignoresSafeArea()
                     NavigationBar()
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     Spacer()
@@ -183,12 +184,13 @@ struct Home: View {
                     Image (systemName: "arrow.down.circle")
                     
                 }
-                
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-            }.navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
         }
+
         
     }
     
@@ -196,10 +198,7 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-
         Home()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
-            .previewDisplayName("iPhone 13")
 
 //        Home()
 //            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro Max"))
