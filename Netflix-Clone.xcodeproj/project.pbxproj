@@ -41,6 +41,7 @@
 		75B18A5328BCE343000EBAB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B18A5228BCE343000EBAB9 /* Preview Assets.xcassets */; };
 		75B18A6228BCEBAF000EBAB9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B18A6128BCEBAF000EBAB9 /* LoginView.swift */; };
 		75B4F9F028BE3C8F00494DD4 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */; };
+		75BC401F28C258D000AE4981 /* json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 75BC401E28C258CF00AE4981 /* json.txt */; };
 		75E94E6128BE2F7D0089507C /* ManageAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E94E6028BE2F7D0089507C /* ManageAccountView.swift */; };
 		75E94E6328BE36120089507C /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E94E6228BE36120089507C /* ProfileSettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		75B18A5228BCE343000EBAB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75B18A6128BCEBAF000EBAB9 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
+		75BC401E28C258CF00AE4981 /* json.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = json.txt; sourceTree = "<group>"; };
 		75E94E6028BE2F7D0089507C /* ManageAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountView.swift; sourceTree = "<group>"; };
 		75E94E6228BE36120089507C /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				758D146C28BD4201003A4BDC /* populars.json */,
 				758D147028BD4212003A4BDC /* tops.json */,
 				758D146A28BD41F8003A4BDC /* movies.json */,
+				75BC401E28C258CF00AE4981 /* json.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				758D147128BD4212003A4BDC /* tops.json in Resources */,
 				75B18A5028BCE343000EBAB9 /* Assets.xcassets in Resources */,
 				758D147528BD4221003A4BDC /* users.json in Resources */,
+				75BC401F28C258D000AE4981 /* json.txt in Resources */,
 				758D146B28BD41F8003A4BDC /* movies.json in Resources */,
 				758D146F28BD420A003A4BDC /* asias.json in Resources */,
 				7596C2F428BCF1EF00D559BE /* GoogleService-Info.plist in Resources */,

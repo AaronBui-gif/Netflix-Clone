@@ -23,7 +23,7 @@ struct SignUpView: View {
     
     // MARK: - Body
     var body: some View {
-
+        NavigationView {
             ZStack {
                 
                 // MARK: Background Image
@@ -103,6 +103,7 @@ struct SignUpView: View {
                     SecureField("Password", text: $password)
                         .padding(.vertical, 12)
                         .padding(.horizontal, 20)
+                        .foregroundColor(.black)
                         .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
                         .padding(.bottom, 10)
                        
@@ -134,7 +135,16 @@ struct SignUpView: View {
                 
                 HStack {
                     Text("Already a member?")
-                    Text("Login")
+                    
+                    // MARK: Login
+                    NavigationLink{
+                        LoginView(didCompleteLoginProcess: {})
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        Text("Login")
+                        }
                         
                 }
                
@@ -151,7 +161,7 @@ struct SignUpView: View {
             }
             
         
-        
+        }
     }
     
     // MARK: Function handle login

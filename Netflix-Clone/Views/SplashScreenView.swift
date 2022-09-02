@@ -22,7 +22,7 @@ struct SplashScreenView: View {
             Color.black.ignoresSafeArea()
             if isActive {
                 // Change View
-                LoginView(didCompleteLoginProcess: {})
+                MainPageView()
             } else {
                 VStack {
                     VStack {

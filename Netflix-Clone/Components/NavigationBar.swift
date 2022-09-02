@@ -26,26 +26,26 @@ struct NavigationBar: View {
                 }
                 Spacer()
                 
-//                // MARK: Search Bar
-//                NavigationLink{ Home().navigationBarTitle("")
-//                        .navigationBarHidden(true)
-//                    .navigationBarTitleDisplayMode(.inline)} label: {
-//                        Image(systemName: "magnifyingglass")
-//                            .font(.system(size: 24, weight: .bold))
-//                            .foregroundColor(Color.white)
-//                    }
-                
-                // MARK: Screen cast
-                NavigationLink{
-                    Home()
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)
-                } label: {
-                    Image("screen-cast")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(Color.white)
+                // MARK: Search Bar
+                NavigationLink{ Home().navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    .navigationBarTitleDisplayMode(.inline)} label: {
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(Color.white)
                     }
+                
+//                // MARK: Screen cast
+//                NavigationLink{
+//                    Home()
+//                    .navigationBarTitle("")
+//                    .navigationBarHidden(true)
+//                    .navigationBarTitleDisplayMode(.inline)
+//                } label: {
+//                    Image("screen-cast")
+//                        .font(.system(size: 24, weight: .bold))
+//                        .foregroundColor(Color.white)
+//                    }
                 
                 
                 // MARK: User Profile Picture

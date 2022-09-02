@@ -99,6 +99,9 @@ struct LoginView: View {
                     }
                 }
                 
+                Text("Login")
+                    .foregroundColor(.white)
+                
                 // MARK: - Text Field for email and password
                 VStack (spacing: 18)  {
                     TextField("Email", text: $email)
@@ -106,7 +109,7 @@ struct LoginView: View {
                         .padding(.horizontal, 20)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                         
                       
@@ -114,7 +117,7 @@ struct LoginView: View {
                     SecureField("Password", text: $password)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                        
                 }
@@ -246,7 +249,7 @@ struct LoginView: View {
                 }
                 
                 self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url?.absoluteString)
+//                print(url?.absoluteString)
                 
                 guard let url = url else {return }
                 self.storeUserInformation(imageProfileUrl: url)

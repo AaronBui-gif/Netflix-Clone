@@ -16,6 +16,7 @@ struct MainPageView: View {
     ]
     
     var body: some View {
+        NavigationView{
         ZStack(){
             Color.black.ignoresSafeArea()
             
@@ -56,16 +57,16 @@ struct MainPageView: View {
                                 .font(.system(size: 18, weight: .semibold))
                                 .opacity(0.8)
                         }
-
-                        //MARK: - SIGN UP BUTTON
-                        Button{
-                            print("SIGN UP")
+                        .padding(.horizontal, 10)
+                        //MARK: - LOGIN BUTTON
+                        NavigationLink{
+                            LoginView(didCompleteLoginProcess: {})
                         } label: {
-                            Text("Sign up")
+                            Text("Log In")
                                 .foregroundColor(.white)
                                 .font(.system(size: 18, weight: .semibold))
                                 .opacity(0.8)
-                        }
+                            }
                     }
                     .padding(.top, 35)
                 }
@@ -79,15 +80,15 @@ struct MainPageView: View {
 
                 Spacer()
 
-                //FOOTER
-                Button{
-                    print("GET STARTED")
+                // MARK: Footer
+                NavigationLink{
+                    SignUpView(didCompleteLoginProcess: {})
                 } label: {
                     Text("Get Started")
                         .foregroundColor(.white)
                         .font(.system(size: 20, weight: .bold))
                         .opacity(0.8)
-                }
+                    }
                 .frame(width: 340, height: 45, alignment: .center)
                 .background(Color("red").opacity(0.9))
                 .cornerRadius(4)
@@ -96,6 +97,10 @@ struct MainPageView: View {
             }
             .ignoresSafeArea()
 
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
