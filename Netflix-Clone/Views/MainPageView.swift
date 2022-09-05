@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct MainPageView: View {
+
+    
     let images = [
         CarouselSlider(image: "MainPage-background1"),
         CarouselSlider(image: "MainPage-background2"),
@@ -101,6 +103,8 @@ struct MainPageView: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarTitleDisplayMode(.inline)
+
+            
         }
     }
 }
@@ -110,6 +114,8 @@ struct CarouselSlider: Identifiable {
     let id = UUID()
     let image: String
 }
+
+
 
 
 struct MainPageView_Previews: PreviewProvider {
