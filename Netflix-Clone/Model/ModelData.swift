@@ -17,6 +17,8 @@ var tops: [Movie] = load("tops.json")
 var comings: [Movie] = load("comingsoon.json")
 //var previewVideo: Video = load("videoData.json")
 var users: [User] = load("users.json")
+var samples: [Movie] = load("samples.json")
+
 var myList: [Movie] = []
 var downloadList: [Movie] = []
 

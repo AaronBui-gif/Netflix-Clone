@@ -101,6 +101,9 @@ struct LoginView: View {
                 
                 Text("Login")
                     .foregroundColor(.white)
+                    .font(.system(size: 42))
+                    .fontWeight(.bold)
+                    .padding(.bottom, 10)
                 
                 // MARK: - Text Field for email and password
                 VStack (spacing: 18)  {

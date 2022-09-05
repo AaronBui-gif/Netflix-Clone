@@ -16,48 +16,139 @@ struct HomeView: View {
                 Color.black.ignoresSafeArea()
                 
                 // Main content begins
-                VStack(spacing: 0){
-
-                    ScrollView{
-                        
-                        // Header
+                ScrollView{
+                    VStack(spacing: 0){
+                        //Header
                         ZStack {
                             NavigationLink{ MovieDetail(movie: movies[1])} label: {
                                     ZStack{
                                         Image("login-background2")
                                         .resizable()
-                                        .scaledToFill()
-                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 390, height: 552)
+//                                        .scaledToFill()
+//                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+                                        .opacity(0.65)
                                         .ignoresSafeArea(.all)
                                         
                                         LinearGradient(
                                             gradient: Gradient(stops: [
                                                 .init(color: .black, location: 0),
-                                                .init(color: .black.opacity(0.1), location: 1)]),
+                                                .init(color: .black.opacity(0.1), location: 0.35)]),
                                                 startPoint: .bottom,
                                                 endPoint: .top
                                         )
                                     .ignoresSafeArea()
                                     }
-
                             }
-                            VStack{
-                                NavigationBar()
-                                Spacer()
+                                
+                                VStack{
+                                    //MARK: - NAVIGATION BAR
+                                    NavigationBar()
+                                        .padding(.top, 42)
+                                    Spacer()
+                                    
+                                    //MARK: - CATEGORY/TYPE OF MOVIE
+                                    HStack{
+                                        Text("Anime")
+                                            .font(.system(size: 18))
+                                            .foregroundColor(.white)
+                                            .fontWeight(.semibold)
+    
+                                        
+                                        Image("dot")
+                                            .resizable()
+                                            .frame(width: 6, height: 6, alignment: .center)
+                                        
+                                        Text("Fantasy")
+                                            .font(.system(size: 18))
+                                            .foregroundColor(.white)
+                                            .fontWeight(.medium)
+                                        
+                                        Image("dot")
+                                            .resizable()
+                                            .frame(width: 6, height: 6, alignment: .center)
+                                        
+                                        Text("Mystery")
+                                            .font(.system(size: 18))
+                                            .foregroundColor(.white)
+                                            .fontWeight(.medium)
+                                    }
+                                }
                             }
-                            
-                        }
-                        
-                        
-                        // Top pi
                         
                     }
+                    .padding(.bottom, 0)
                     //Main content ends
                     
+                    //MARK: - MyList + Play + Info buttons
+                    HStack(alignment: .center, spacing: 60){
+                        
+                        //MY LIST BUTTON
+                        Button(action: {
+                            myList.append(movies[1])
+                            print(myList)
+                        }) {
+                            VStack{
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.white)
+                                Text("My List")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                            }.padding(.top, 4)
+                        }
+                        
+                        //PLAY BUTTON
+                        Button{
+                            
+                        } label: {
+                            HStack(alignment: .center, spacing: 18){
+                                Image(systemName: "play.fill")
+                                    .resizable()
+                                    .frame(width: 18, height: 18, alignment: .center)
+                                    .foregroundColor(.black)
+                                Text("Play")
+                                    .font(.system(size: 18))
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.black)
+                            }
+                            .padding(.leading, 4)
+                        }
+                        .frame(width: 110, height:38)
+                        .background(Color.white)
+                        
+                        //INFO BUTTON
+                        Button{
+                            
+                        } label: {
+                            VStack{
+                                Image(systemName: "info.circle")
+                                    .resizable()
+                                    .frame(width: 24, height: 24, alignment: .center)
+                                    .foregroundColor(.white)
+                                Text("Info")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                            }.padding(.top, 10)
+                        }
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 4))
                     
-                }//VStack
+                    //MARK: - BODY
+                    VStack (spacing: 24){
+                        MovieCarouselView(secionTitle: "New Release")
+                        MovieCarouselView(secionTitle: "Top Pick in Asia")
+
+                    }
+
+                }.ignoresSafeArea(.all)
+                // Main content ends
+
                 
             }//ZStack
+            
             
         }//NavigationView
         .ignoresSafeArea()

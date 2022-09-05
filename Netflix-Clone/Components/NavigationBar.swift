@@ -17,74 +17,99 @@ struct NavigationBar: View {
     // MARK: Body
     var body: some View {
         VStack{
-            HStack(alignment: .bottom, spacing: 0) {
+            HStack(alignment: .center, spacing: 12) {
                 VStack(alignment: .leading, spacing: 4) {
                     Image("netflix")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60, height: 60, alignment: .center)
                 }
+
                 Spacer()
                 
-                // MARK: Search Bar
-                NavigationLink{ Home().navigationBarTitle("")
-                        .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
-                        Image(systemName: "magnifyingglass")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(Color.white)
-                    }
-                
-//                // MARK: Screen cast
+//                // MARK: Screen Cast
 //                NavigationLink{
 //                    Home()
-//                    .navigationBarTitle("")
-//                    .navigationBarHidden(true)
-//                    .navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarTitle("")
+//                        .navigationBarHidden(true)
+//                        .navigationBarTitleDisplayMode(.inline)
 //                } label: {
 //                    Image("screen-cast")
-//                        .font(.system(size: 24, weight: .bold))
+//                        .resizable()
+//                        .frame(width: 32, height: 30, alignment: .bottom)
 //                        .foregroundColor(Color.white)
-//                    }
+//                        .offset(x:0, y: 6)
+//                }
                 
-                
-                // MARK: User Profile Picture
-                NavigationLink{ ProfileSettingsView().navigationBarTitle("")
+                // MARK: - Search Bar
+                NavigationLink{
+                    Home()
+                        .navigationBarTitle("")
                         .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
-                        WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 40, height: 45)
-                            .clipped()
-                            .cornerRadius(15)
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color.white)
+                }
+                
+
+                //MARK: User Profile Picture
+                NavigationLink{
+                    ProfileSettingsView()
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40, height: 45)
+                        .clipped()
+                        .cornerRadius(15)
                     }
             }
             .padding(.bottom, 10)
             
-            
-            HStack(spacing: 70){
-                NavigationLink{ Home().navigationBarTitle("")
+            //MARK: - Menu Navigation
+            HStack(alignment: .center, spacing: 70){
+                //TV SHOWS
+                NavigationLink{
+                    Home()
+                        .navigationBarTitle("")
                         .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
                         Text ("TV Shows")
                             .foregroundColor(Color.white)
-                    }
-                NavigationLink{ Home().navigationBarTitle("")
+                            .fontWeight(.semibold)
+                }
+                
+                //MOVIES
+                NavigationLink{
+                    Home()
+                        .navigationBarTitle("")
                         .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
                         Text ("Movies")
                             .foregroundColor(Color.white)
-                    }
-                NavigationLink{ Home().navigationBarTitle("")
+                            .fontWeight(.semibold)
+                }
+                
+                //MY LIST
+                NavigationLink{
+                    Home()
+                        .navigationBarTitle("")
                         .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)} label: {
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
                         Text ("My List")
                             .foregroundColor(Color.white)
-                    }
+                            .fontWeight(.semibold)
+                }
             }
         }
-
 
     }
 }
