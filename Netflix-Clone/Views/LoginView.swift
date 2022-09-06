@@ -25,6 +25,7 @@ import FirebaseFirestore
 
 // MARK: Login View
 struct LoginView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK: - Properties
     let didCompleteLoginProcess: () -> ()
@@ -47,11 +48,15 @@ struct LoginView: View {
                 
                 // MARK: Background Image
                 ZStack {
+                    Color.black
+                        .ignoresSafeArea()
+                    
                     Image("login-background")
                         .resizable()
                         .frame(width: 500, height: 800)
                         .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea(.all)
+//                        .ignoresSafeArea(.all)
+                        .offset(x: 0, y: 30)
                     
                     LinearGradient(
                         gradient: Gradient(stops: [
@@ -61,11 +66,13 @@ struct LoginView: View {
                             endPoint: .top
                     )
                     .ignoresSafeArea()
+                    
                 }
                 
                 
         
             VStack (spacing: 16){
+                
 //                // MARK: - Choosing Login or Sign up
 //                Picker(selection: $isLoginMode, label: Text("Picker here")) {
 //                    Text("Login")
@@ -160,14 +167,42 @@ struct LoginView: View {
                 
                 Text(self.loginStatusMessage)
                     .foregroundColor(.red)
+                
+//                Spacer()
             }
                 .padding(.horizontal, 72)
                 
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading:
+                    HStack(alignment: .center){
+                        //BACK BUTTON
+                        CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
+                        
+                        Spacer()
+                        
+                        //IMAGE NETFLIX
+                        Image("MainPage-logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 124, height: 0, alignment: .center)
+                        .ignoresSafeArea(.all)
+                        .padding(.leading, -56)
+                        
+                        Spacer()
+
+                    }
+                    .frame(width: 390, height: 60, alignment: .center)
+                    .background(LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: Color.black, location: 0),
+                            .init(color: Color.black.opacity(1), location: 1)]),
+                            startPoint: .top,
+                            endPoint: .bottom).ignoresSafeArea(.all))
+            )
             .foregroundColor(.white)
-            .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-                ImagePicker(image: $image)
-            }
+ 
             
         
        
@@ -278,6 +313,19 @@ struct LoginView: View {
             }
     }
     
+}
+                
+struct CustomBackButtonView: View {
+    let action: ()-> Void
+    
+    var body: some View {
+        Button(action: action, label: {
+            Image(systemName: "chevron.backward")
+                .padding(.all,12)
+//                .background(Color.white)
+                .cornerRadius(8.0)
+        })
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
