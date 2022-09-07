@@ -86,8 +86,8 @@ struct HomeView: View {
                         
                         //MY LIST BUTTON
                         Button(action: {
-                            myList.append(movies[1])
-                            print(myList)
+                            //myList.append(movies[1])
+                            //print(myList)
                         }) {
                             VStack{
                                 Image(systemName: "plus")

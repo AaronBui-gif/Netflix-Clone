@@ -4,7 +4,6 @@
 //
 //  Created by Huy Bui Thanh on 29/08/2022.
 //
-
 import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
@@ -21,8 +20,6 @@ class MainMessagesViewModel: ObservableObject {
                     self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
                 }
         fetchCurrentUser()
-        
-        
     }
 
     // MARK: Fetch User
@@ -51,6 +48,7 @@ class MainMessagesViewModel: ObservableObject {
         
     }
     
+  
     // MARK: Handle Sign Out
     func handleSignOut() {
             isUserCurrentlyLoggedOut.toggle()

@@ -20,6 +20,7 @@ struct ProfileSettingsView: View {
     @State var shouldShowLogOutOptions = false
     @State var email = ""
     @ObservedObject private var vm = MainMessagesViewModel()
+    
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     

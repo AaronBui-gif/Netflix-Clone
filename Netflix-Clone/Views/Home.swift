@@ -35,8 +35,8 @@ struct Home: View {
                             ZStack(alignment: .leading) {
                                 HStack(alignment: .center, spacing: 60) {
                                     Button(action: {
-                                        myList.append(movies[1])
-                                        print(myList)
+                                        //myList.append(movies[1])
+                                        //print(myList)
                                     }) {
                                         VStack{
                                             Image(systemName: "plus")
@@ -94,17 +94,17 @@ struct Home: View {
                                 VStack(alignment: .leading) {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: 12) {
-                                            ForEach(populars, id:\.self) { popular in
-                                                NavigationLink{ MovieDetail(movie: popular)} label: {
-                                                    Image(popular.imageName)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 200)
-                                                        .cornerRadius(12)
-                                                    
-                                                }
-                                                
-                                            }
+//                                            ForEach(populars, id:\.self) { popular in
+//                                                NavigationLink{ MovieDetail(movie: popular)} label: {
+//                                                    Image(popular.imageName)
+//                                                        .resizable()
+//                                                        .aspectRatio(contentMode: .fill)
+//                                                        .frame(width: 200)
+//                                                        .cornerRadius(12)
+//
+//                                                }
+//
+//                                            }
                                             
                                             
                                         }
@@ -126,17 +126,17 @@ struct Home: View {
                                 VStack(alignment: .leading) {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: 12) {
-                                            ForEach(asias, id:\.self) { asia in
-                                                NavigationLink{ MovieDetail(movie: asia)} label: {
-                                                    Image(asia.imageName)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 200)
-                                                        .cornerRadius(12)
-                                                    
-                                                }
-                                                
-                                            }
+//                                            ForEach(asias, id:\.self) { asia in
+//                                                NavigationLink{ MovieDetail(movie: asia)} label: {
+//                                                    Image(asia.imageName)
+//                                                        .resizable()
+//                                                        .aspectRatio(contentMode: .fill)
+//                                                        .frame(width: 200)
+//                                                        .cornerRadius(12)
+//                                                    
+//                                                }
+//                                                
+//                                            }
                                         }
                                     }
                                 }
@@ -156,17 +156,17 @@ struct Home: View {
                                 VStack(alignment: .leading) {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: 12) {
-                                            ForEach(tops, id:\.self) { top in
-                                                NavigationLink{ MovieDetail(movie: top)} label: {
-                                                    Image(top.imageName)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 200)
-                                                        .cornerRadius(12)
-                                                    
-                                                }
-                                                
-                                            }
+//                                            ForEach(tops, id:\.self) { top in
+//                                                NavigationLink{ MovieDetail(movie: top)} label: {
+//                                                    Image(top.imageName)
+//                                                        .resizable()
+//                                                        .aspectRatio(contentMode: .fill)
+//                                                        .frame(width: 200)
+//                                                        .cornerRadius(12)
+//                                                    
+//                                                }
+//                                                
+//                                            }
                                             
                                         }
                                     }
