@@ -45,7 +45,7 @@ struct HomeView: View {
                                 VStack{
                                     //MARK: - NAVIGATION BAR
                                     NavigationBar()
-                                        .padding(.top, 42)
+                                        .padding(.top, 32)
                                     Spacer()
                                     
                                     //MARK: - CATEGORY/TYPE OF MOVIE
@@ -152,7 +152,9 @@ struct HomeView: View {
             
         }//NavigationView
         .ignoresSafeArea()
+        .navigationBarTitle("")
         .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

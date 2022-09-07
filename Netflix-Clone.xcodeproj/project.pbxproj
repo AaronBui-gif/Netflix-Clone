@@ -45,6 +45,8 @@
 		75B18A6228BCEBAF000EBAB9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B18A6128BCEBAF000EBAB9 /* LoginView.swift */; };
 		75B4F9F028BE3C8F00494DD4 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */; };
 		75BC401F28C258D000AE4981 /* json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 75BC401E28C258CF00AE4981 /* json.txt */; };
+		75DAC65928C7B21F005F51B2 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAC65828C7B21F005F51B2 /* ComingSoonView.swift */; };
+		75DAC65D28C7B308005F51B2 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAC65C28C7B308005F51B2 /* VideoView.swift */; };
 		75E94E6128BE2F7D0089507C /* ManageAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E94E6028BE2F7D0089507C /* ManageAccountView.swift */; };
 		75E94E6328BE36120089507C /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E94E6228BE36120089507C /* ProfileSettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,8 @@
 		75B18A6128BCEBAF000EBAB9 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		75BC401E28C258CF00AE4981 /* json.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = json.txt; sourceTree = "<group>"; };
+		75DAC65828C7B21F005F51B2 /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
+		75DAC65C28C7B308005F51B2 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		75E94E6028BE2F7D0089507C /* ManageAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountView.swift; sourceTree = "<group>"; };
 		75E94E6228BE36120089507C /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,6 +219,8 @@
 				75E94E6228BE36120089507C /* ProfileSettingsView.swift */,
 				615A2B5628C1CBD600DAA76B /* SignUpView.swift */,
 				615A2B5E28C1FB0100DAA76B /* HomeView.swift */,
+				75DAC65828C7B21F005F51B2 /* ComingSoonView.swift */,
+				75DAC65C28C7B308005F51B2 /* VideoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,7 +329,9 @@
 				61E5761128C33D6E00724A68 /* MovieCarouselView.swift in Sources */,
 				758D146028BD3F52003A4BDC /* NavigationBar.swift in Sources */,
 				75B18A6228BCEBAF000EBAB9 /* LoginView.swift in Sources */,
+				75DAC65D28C7B308005F51B2 /* VideoView.swift in Sources */,
 				75B4F9F028BE3C8F00494DD4 /* MovieList.swift in Sources */,
+				75DAC65928C7B21F005F51B2 /* ComingSoonView.swift in Sources */,
 				758D146428BD3F71003A4BDC /* Movie.swift in Sources */,
 				75B18A4C28BCE340000EBAB9 /* Netflix_CloneApp.swift in Sources */,
 				7596C30828BD18D400D559BE /* MainMessagesViewModel.swift in Sources */,
