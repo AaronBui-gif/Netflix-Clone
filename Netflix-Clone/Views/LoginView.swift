@@ -154,8 +154,6 @@ struct LoginView: View {
                     .cornerRadius(2)
                     .opacity(0.85)
 //                    .padding(.horizontal, 40)
-                }.sheet(isPresented: $changeView) {
-                    MainMessagesView()
                 }
                 
                 HStack {
@@ -259,7 +257,7 @@ struct LoginView: View {
             self.didCompleteLoginProcess()
             //self.changeView.toggle()
             if let window = UIApplication.shared.windows.first {
-                window.rootViewController = UIHostingController(rootView: Home())
+                window.rootViewController = UIHostingController(rootView: HomeView())
                 window.makeKeyAndVisible()
             }
         
@@ -312,7 +310,6 @@ struct LoginView: View {
                 self.didCompleteLoginProcess()
             }
     }
-    
 }
                 
 struct CustomBackButtonView: View {

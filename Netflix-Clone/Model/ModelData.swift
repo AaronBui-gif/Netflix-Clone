@@ -7,14 +7,8 @@
 
 import Foundation
 
-// Initialize here
 
-// Replace with`Initialize here` Comment above
 var movies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie?fbclid=IwAR2OetUECYxuzW7gBPspT9H8XWaoNa4kwhToxcb4g6Er3S31nTNcH8JJJ0s")
-
-
-//var myList: [Movie] = []
-//var downloadList: [Movie] = []
 
 func load(inputJsonURL: String) -> [Movie] {
     if let url = URL(string: inputJsonURL) {

@@ -16,12 +16,13 @@ struct Movie: Decodable, Hashable, Identifiable{
     let rating: Double
     let welcomeDescription, creator: String
     let castList: [CastList]
+    let genreList: [GenreList]
 
     enum CodingKeys: String, CodingKey {
         case movieID = "movieId"
         case title, publishedDate, categories, youtubeID, imageName, rating
         case welcomeDescription = "description"
-        case creator, castList
+        case creator, castList, genreList
     }
     var image: Image {
         Image(imageName)
@@ -59,6 +60,17 @@ struct CastList: Codable {
     enum CodingKeys: String, CodingKey {
         case castID = "castId"
         case castName
+    }
+}
+
+// MARK: - GenreList
+struct GenreList: Codable {
+    let genreID: Int
+    let genreName: String
+
+    enum CodingKeys: String, CodingKey {
+        case genreID = "genreId"
+        case genreName
     }
 }
 

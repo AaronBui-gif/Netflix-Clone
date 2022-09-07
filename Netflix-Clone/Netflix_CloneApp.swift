@@ -11,8 +11,8 @@ import SwiftUI
 struct Netflix_CloneApp: App {
     var body: some Scene {
         WindowGroup {
-//            SplashScreenView()
-            HomeView()
+            SplashScreenView()
+            //HomeView()
         }
     }
 }

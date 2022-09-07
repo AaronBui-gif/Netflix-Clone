@@ -27,19 +27,19 @@ struct NavigationBar: View {
 
                 Spacer()
                 
-//                // MARK: Screen Cast
-//                NavigationLink{
-//                    Home()
-//                        .navigationBarTitle("")
-//                        .navigationBarHidden(true)
-//                        .navigationBarTitleDisplayMode(.inline)
-//                } label: {
-//                    Image("screen-cast")
-//                        .resizable()
-//                        .frame(width: 32, height: 30, alignment: .bottom)
-//                        .foregroundColor(Color.white)
-//                        .offset(x:0, y: 6)
-//                }
+                // MARK: Screen Cast
+                NavigationLink{
+                    Home()
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    Image("screen-cast")
+                        .resizable()
+                        .frame(width: 32, height: 30, alignment: .bottom)
+                        .foregroundColor(Color.white)
+                        .offset(x:0, y: 6)
+                }
                 
                 // MARK: - Search Bar
                 NavigationLink{
@@ -99,7 +99,7 @@ struct NavigationBar: View {
                 
                 //MY LIST
                 NavigationLink{
-                    Home()
+                    MovieList()
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)

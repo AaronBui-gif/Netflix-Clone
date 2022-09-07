@@ -13,7 +13,7 @@ class MainMessagesViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatUser: User?
     @Published var isUserCurrentlyLoggedOut = false
-    
+    @Published var savedLists: [Movie] = []
     // MARK: Initialize
     init() {
         DispatchQueue.main.async {
@@ -54,5 +54,68 @@ class MainMessagesViewModel: ObservableObject {
             isUserCurrentlyLoggedOut.toggle()
             try? FirebaseManager.shared.auth.signOut()
         }
+    
+    
+    // MARK: fetch api
+    func fetch() {
+    guard let url = URL(string: "https://backend-ios.herokuapp.com/user") else {
+        return
+    }
 
+    let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+        guard let data = data, error == nil else {
+            return
+        }
+        
+            // Convert to JSON
+        do {
+            let savedLists = try JSONDecoder().decode([Movie].self, from: data)
+            DispatchQueue.main.async {
+                self?.savedLists = savedLists
+            }
+        }
+        catch {
+            print("FAIL: \(error)")
+        }
+    }
+        task.resume()
+    }
+    
+    func makePostRequest(name: String, pass: String) {
+        guard let url = URL(string: "https://backend-ios.herokuapp.com/user") else {
+            return
+        }
+              
+        print("Making api calls...")
+        var request  = URLRequest(url: url)
+        
+        // method, body, headers
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("\(name)")
+        print("\(pass)")
+        let body: [String: AnyHashable] = [
+            "userName": name,
+            "password": pass
+            
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        
+        // Make the request
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                print("SUCCESS: \(response)")
+            }
+            catch {
+                print("FAIL: \(error)")
+            }
+        }
+        task.resume()
+    }
 }
+

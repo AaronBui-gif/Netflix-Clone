@@ -18,7 +18,7 @@ struct Home: View {
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 15) {
                     ScrollView {
-                    NavigationLink{ MovieDetail(movie: movies[1])} label: {
+                    NavigationLink{ MovieDetail(movie: movies[0])} label: {
                         GeometryReader { geo in
                         Image("picture2")
                             .resizable()

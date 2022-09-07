@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BottomSheet
 
 struct MovieList: View {
     @State var showMovieInfo = false
@@ -42,7 +43,7 @@ struct MovieList: View {
                                         }
                                     }
                                     
-                                    .sheet(isPresented: $showMovieInfo) {
+                                    .bottomSheet(isPresented: $showMovieInfo) {
                                         MovieDetailSummaryView(movie: movie)
                                     
                                         
