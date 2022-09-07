@@ -21,8 +21,6 @@ class MainMessagesViewModel: ObservableObject {
                     self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
                 }
         fetchCurrentUser()
-        
-        
     }
 
     // MARK: Fetch User
@@ -51,6 +49,7 @@ class MainMessagesViewModel: ObservableObject {
         
     }
     
+  
     // MARK: Handle Sign Out
     func handleSignOut() {
             isUserCurrentlyLoggedOut.toggle()

@@ -11,7 +11,6 @@ struct Home: View {
     @State var currentIndex: Int = 0
     @State var i: Int = 0
     
-    
     var body: some View {
         NavigationView{
             ZStack{
@@ -35,7 +34,6 @@ struct Home: View {
                                 HStack(alignment: .center, spacing: 60) {
                                     Button(action: {
                                         myList.append(movies[1])
-                                        print(myList)
                                     }) {
                                         VStack{
                                             Image(systemName: "plus")

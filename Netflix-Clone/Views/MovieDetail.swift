@@ -108,7 +108,7 @@ struct MovieDetail: View {
                             .offset(x: 30)
                         //ScrollView(.horizontal) {
                         
-                        Text(movie.summary)
+                        Text(movie.welcomeDescription)
                             .foregroundColor(Color.white)
                             .offset(x: 0)
                         
@@ -119,8 +119,8 @@ struct MovieDetail: View {
                         .font(.title2)
                         .foregroundColor(Color.white)
                         .offset(x: 10)
-                    ForEach(movie.cast.indices, id: \.self) {
-                        Text(self.movie.cast[$0])
+                    ForEach(movie.castList.indices, id: \.self) {
+                        Text(self.movie.castList[$0])
                             .foregroundColor(Color.white)
                             .offset(x: 10)
                         
@@ -132,9 +132,9 @@ struct MovieDetail: View {
                             .foregroundColor(Color.white)
                             .offset(x: 10)
                         
-                        ForEach(movie.genres.indices, id: \.self) {
+                        ForEach(movie.categories.indices, id: \.self) {
                             
-                            Text(self.movie.genres[$0])
+                            Text(self.movie.categories)
                                 .foregroundColor(Color.white)
                                 .offset(x: 10)
                             
