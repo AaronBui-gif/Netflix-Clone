@@ -20,7 +20,7 @@ struct HomeView: View {
                     VStack(spacing: 0){
                         //Header
                         ZStack {
-                            NavigationLink{ MovieDetail(movie: movies[1])} label: {
+                            NavigationLink{ MovieDetail(movie: movies[0])} label: {
                                     ZStack{
                                         Image("login-background2")
                                         .resizable()
@@ -86,8 +86,8 @@ struct HomeView: View {
                         
                         //MY LIST BUTTON
                         Button(action: {
-                            myList.append(movies[1])
-                            print(myList)
+                            //myList.append(movies[1])
+                            //print(myList)
                         }) {
                             VStack{
                                 Image(systemName: "plus")
@@ -143,7 +143,8 @@ struct HomeView: View {
 
                     }
 
-                }.ignoresSafeArea(.all)
+                }//.ignoresSafeArea(.all)
+                //.padding(.top, -90)
                 // Main content ends
 
                 

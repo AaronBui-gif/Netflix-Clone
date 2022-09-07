@@ -20,9 +20,9 @@ struct MovieCarouselView: View {
             
             ScrollView (.horizontal) {
                 HStack(spacing: 8) {
-                    ForEach(samples, id:\.self){movie in
-                        MovieCardView(imageName: movie.imageName, aspect: aspect)
-                    }
+//                    ForEach(samples, id:\.self){movie in
+//                        MovieCardView(imageName: movie.imageName, aspect: aspect)
+//                    }
                 }
             }
             .padding(.leading, 6)

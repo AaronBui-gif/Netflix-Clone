@@ -99,15 +99,15 @@ struct MovieDetailView: View {
                             GridItem(.flexible(minimum: 100, maximum: 200)),
                             GridItem(.flexible(minimum: 100, maximum: 200))
                         ], spacing: 12, content: {
-                            ForEach(samples) { movie in
-                                NavigationLink {
-                                    MovieDetailView()
-                                } label: {
-                                    HStack(alignment: .center) {
-                                        MovieCardView(imageName: movie.imageName)
-                                    }
-                                }
-                            }
+//                            ForEach(samples) { movie in
+//                                NavigationLink {
+//                                    MovieDetailView()
+//                                } label: {
+//                                    HStack(alignment: .center) {
+//                                        MovieCardView(imageName: movie.imageName)
+//                                    }
+//                                }
+//                            }
                         })
                     }
                     

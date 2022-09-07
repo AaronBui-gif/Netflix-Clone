@@ -20,7 +20,7 @@ struct SignUpView: View {
     @State var loginStatusMessage = ""
     // MARK: Image
     @State var image: UIImage?
-    
+    @ObservedObject var mainMessageViewModel: MainMessagesViewModel
     // MARK: - Body
     var body: some View {
         NavigationView {
@@ -129,8 +129,6 @@ struct SignUpView: View {
                     .cornerRadius(2)
                     .opacity(0.85)
 //                    .padding(.horizontal, 40)
-                }.sheet(isPresented: $changeView) {
-                    MainMessagesView()
                 }
                 
                 HStack {
@@ -185,6 +183,7 @@ struct SignUpView: View {
             self.loginStatusMessage = "Successsfully created user: \(result?.user.uid  ?? "")"
             
             self.persistImageToStorage()
+            mainMessageViewModel.makePostRequest(name: email, pass: password)
         }
     }
     
@@ -237,6 +236,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(didCompleteLoginProcess: {})
+        SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct MovieDetail: View {
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
@@ -31,11 +32,12 @@ struct MovieDetail: View {
             Color.black.ignoresSafeArea()
             ScrollView {
                 Group{
-                    Image(movie.imageName)
-                        .resizable()
-                        .frame(width: 350, height: 500)
-                        .offset(y: -50)
-                    
+                    VideoView(videoID: movie.youtubeID)
+                        .frame(width: 400, height: 200, alignment: .center)
+                    Spacer()
+                    Text(movie.title)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
                     
                     VStack(alignment: .leading, spacing: 10) {
                         HStack(alignment: .center, spacing: 0) {
@@ -56,34 +58,10 @@ struct MovieDetail: View {
                             .frame(width: 300, height:40)
                             .background(Color.white)
                         }
-                        .offset(x: 27, y: -40)
+                    
                         HStack(alignment: .center, spacing: 0) {
                             Button{
-                                
-                            } label: {
-                                Button(action: {
-                                    myList.append(movie)
-                                    
-                                }) {
-                                    HStack{
-                                        Image(systemName: "plus")
-                                            .resizable()
-                                            .frame(width: 20, height: 20, alignment: .center)
-                                            .foregroundColor(.black)
-                                        Text("My List")
-                                            .font(.title2)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.black)
-                                    }
-                                }
-                            }
-                            .frame(width: 300, height:40)
-                            .background(Color.white)
-                        }
-                        .offset(x: 27, y: -40)
-                        HStack(alignment: .center, spacing: 0) {
-                            Button{
-                                downloadList.append(movie)
+                                //downloadList.append(movie)
                             } label: {
                                 HStack(alignment: .center, spacing: 20){
                                     Image(systemName: "square.and.arrow.down")
@@ -99,31 +77,17 @@ struct MovieDetail: View {
                             .frame(width: 300, height:40)
                             .background(Color.gray)
                         }
-                        .offset(x: 27, y: -40)
-                        
-                        Divider()
-                        Text("About \(movie.title)")
-                            .font(.title2)
-                            .foregroundColor(Color.white)
-                            .offset(x: 30)
-                        //ScrollView(.horizontal) {
-                        
-                        Text(movie.summary)
-                            .foregroundColor(Color.white)
-                            .offset(x: 0)
-                        
-                    
                     }
-                    
+ 
+                    Text(movie.welcomeDescription)
+                        .foregroundColor(Color.white)
+                        .frame(alignment:.topLeading)
                     Text("Cast")
                         .font(.title2)
                         .foregroundColor(Color.white)
                         .offset(x: 10)
-                    ForEach(movie.cast.indices, id: \.self) {
-                        Text(self.movie.cast[$0])
-                            .foregroundColor(Color.white)
-                            .offset(x: 10)
-                        
+                    ForEach(movie.castList.indices, id: \.self) { index in
+                        Text("\(movie.castList[index].castName)")
                     }
                     
                     Divider()
@@ -132,21 +96,21 @@ struct MovieDetail: View {
                             .foregroundColor(Color.white)
                             .offset(x: 10)
                         
-                        ForEach(movie.genres.indices, id: \.self) {
-                            
-                            Text(self.movie.genres[$0])
-                                .foregroundColor(Color.white)
-                                .offset(x: 10)
-                            
-                        }
+                        //                        ForEach(movie.categories.indices, id: \.self) {
+                        //
+                        //                            Text(self.movie.categories)
+                        //                                .foregroundColor(Color.white)
+                        //                                .offset(x: 10)
+                        //
+                        //                        }
                     }
                     Divider()
                 }
                 .padding()
                 
             }
-//            .navigationTitle(movie.title).foregroundColor(.white)
-//            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(movie.title).foregroundColor(.white)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
         }
