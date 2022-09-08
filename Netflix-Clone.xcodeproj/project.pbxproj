@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		47BF1A8B28C5D12B0083E51B /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF1A8A28C5D12B0083E51B /* MovieDetailView.swift */; };
+		56BAC37328C9D97500AB93B6 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BAC37228C9D97500AB93B6 /* SearchBarView.swift */; };
 		615A2B5728C1CBD600DAA76B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5628C1CBD600DAA76B /* SignUpView.swift */; };
 		615A2B5928C1CF9500DAA76B /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5828C1CF9400DAA76B /* MainPageView.swift */; };
 		615A2B5D28C1D0B300DAA76B /* FeaturedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615A2B5C28C1D0B300DAA76B /* FeaturedItemView.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		47BF1A8A28C5D12B0083E51B /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		56BAC37228C9D97500AB93B6 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		615A2B5628C1CBD600DAA76B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		615A2B5828C1CF9400DAA76B /* MainPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		615A2B5C28C1D0B300DAA76B /* FeaturedItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedItemView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				75DAC65E28C87618005F51B2 /* ComingSoonView.swift */,
 				75DAC66028C87628005F51B2 /* VideoView.swift */,
 				7598833128C8EF9900EB01D2 /* MovieDetailSummaryView.swift */,
+				56BAC37228C9D97500AB93B6 /* SearchBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				7596C30B28BD238F00D559BE /* SplashScreenView.swift in Sources */,
 				615A2B5F28C1FB0100DAA76B /* HomeView.swift in Sources */,
 				75DAC66B28C87B18005F51B2 /* MovieStore.swift in Sources */,
+				56BAC37328C9D97500AB93B6 /* SearchBarView.swift in Sources */,
 				615A2B5D28C1D0B300DAA76B /* FeaturedItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
