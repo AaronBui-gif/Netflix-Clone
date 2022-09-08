@@ -9,22 +9,24 @@ import SwiftUI
 
 struct MovieDetailView: View {
     @State var tabIndex = 0
+    
     var title = "Movie Title"
     var description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     
+    var movie: Movie
     
-    
-    private var tabItems = [
+    var tabItems = [
         "Description", "Others"
     ]
+    @State var showMovieInfo = false
     var body: some View {
         
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: 16){
-                    Rectangle().fill(Color.red)
-                        .frame(height: 200)
+                    VideoView(videoID: movie.youtubeID)
+                        .frame(width: 370, height: 200, alignment: .center)
                     
                     // Save to List button SAVE TO LIST BUTTON
                     HStack (alignment: .center, spacing: 28) {
@@ -88,10 +90,10 @@ struct MovieDetailView: View {
                     if (tabIndex == 0){
                         // Movie description
                         VStack (alignment: .leading, spacing: 6) {
-                            Text("About \(title)")
+                            Text(movie.title)
                                 .font(.system(size: 24))
                             .fontWeight(.bold)
-                            Text(description)
+                            Text(movie.welcomeDescription)
                         }
                     }else {
                         LazyVGrid(columns: [
@@ -99,15 +101,17 @@ struct MovieDetailView: View {
                             GridItem(.flexible(minimum: 100, maximum: 200)),
                             GridItem(.flexible(minimum: 100, maximum: 200))
                         ], spacing: 12, content: {
-//                            ForEach(samples) { movie in
-//                                NavigationLink {
-//                                    MovieDetailView()
-//                                } label: {
-//                                    HStack(alignment: .center) {
-//                                        MovieCardView(imageName: movie.imageName)
-//                                    }
-//                                }
-//                            }
+                            ForEach(movies) { movie in
+                                Button {
+                                    showMovieInfo.toggle()
+                                } label: {
+                                    HStack(alignment: .center) {
+                                        MovieCardView(imageName: movie.imageName)
+                                    }
+                                }.bottomSheet(isPresented: $showMovieInfo) {
+                                    MovieDetailSummaryView(movie: movie)
+                                }
+                            }
                         })
                     }
                     
@@ -124,6 +128,6 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView()
+        MovieDetailView(movie: movies[0])
     }
 }

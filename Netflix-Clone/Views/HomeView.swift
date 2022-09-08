@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Foundation
+import BottomSheet
 
 struct HomeView: View {
+    @State var showMovieInfo = false
     var body: some View {
         //MARK - Navigation View
         NavigationView{
@@ -22,7 +24,7 @@ struct HomeView: View {
                         ZStack {
                             NavigationLink{ MovieDetail(movie: movies[0])} label: {
                                     ZStack{
-                                        Image("login-background2")
+                                        Image(movies[0].imageName)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 390, height: 552)
@@ -139,8 +141,55 @@ struct HomeView: View {
                     //MARK: - BODY
                     VStack (spacing: 24){
                         MovieCarouselView(secionTitle: "New Release")
-                        MovieCarouselView(secionTitle: "Top Pick in Asia")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(popularMovies, id:\.self) { popular in
+                                            Button {
+                                                showMovieInfo.toggle()
+                                            } label: {
+//                                            NavigationLink{ MovieDetailView(movie: popular)} label: {
+                                                Image(popular.imageName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 200)
+                                                    .cornerRadius(12)
 
+                                            }.bottomSheet(isPresented: $showMovieInfo) {
+                                                MovieDetailSummaryView(movie: popular)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        } .offset(y:20)
+                        MovieCarouselView(secionTitle: "Romance")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(romanceMovies, id:\.self) { romance in
+                                            Button {
+                                                showMovieInfo.toggle()
+                                            } label: {
+//                                            NavigationLink{ MovieDetailView(movie: popular)} label: {
+                                                Image(romance.imageName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 200)
+                                                    .cornerRadius(12)
+
+                                            }.bottomSheet(isPresented: $showMovieInfo) {
+                                                MovieDetailSummaryView(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        } .offset(y:20)
                     }
 
                 }//.ignoresSafeArea(.all)

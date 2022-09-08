@@ -47,16 +47,16 @@ struct MovieDetailSummaryView: View {
                                 .fill(Color.white)
                                 .frame(width: 180, height: 50)
                                 .cornerRadius(10)
-                        HStack(spacing: 20){
-                            Image(systemName: "play.fill")
-                                .resizable()
-                                .frame(width: 20, height: 20, alignment: .center)
-                                .foregroundColor(.black)
-                            Text("Play")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.black)
-                        }
+                            HStack(spacing: 20){
+                                Image(systemName: "play.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.black)
+                                Text("Play")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.black)
+                            }
                         }
                     }
                     
@@ -72,13 +72,13 @@ struct MovieDetailSummaryView: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 20))
                         }
-
-                }
+                        
+                    }
                     
                     // Trailer Button
                     Button{
                         shouldShowTrailer.toggle()
-//                        VideoView(videoID: movie.youtubeID)
+                        showTrailer()
                     } label: {
                         VStack {
                             Image(systemName: "play")
@@ -91,18 +91,24 @@ struct MovieDetailSummaryView: View {
                     }
                     
                 }
-                HStack{
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.white)
-                        .font(.system(size: 25))
-                    Text("Episodes & Information")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                    Spacer()
-                        .frame(width: 90)
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.white)
-                        .font(.system(size: 25))
+                // Trailer Button
+                Button{
+                    shouldShowTrailer.toggle()
+                    showTrailer()
+                } label: {
+                    HStack{
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.white)
+                            .font(.system(size: 25))
+                        Text("Episodes & Information")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                        Spacer()
+                            .frame(width: 90)
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(.white)
+                            .font(.system(size: 25))
+                    }
                 }
             }
         }
@@ -113,7 +119,7 @@ struct MovieDetailSummaryView: View {
         if shouldShowTrailer {
             if let window = UIApplication.shared.windows.first {
                 print("Change to Video View")
-                window.rootViewController = UIHostingController(rootView: VideoView(videoID: movie.youtubeID))
+                window.rootViewController = UIHostingController(rootView: MovieDetailView(movie: movie))
                 window.makeKeyAndVisible()
             }
         }

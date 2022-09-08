@@ -20,7 +20,7 @@ struct Home: View {
                     ScrollView {
                     NavigationLink{ MovieDetail(movie: movies[0])} label: {
                         GeometryReader { geo in
-                        Image("picture2")
+                            Image(movies[0].imageName)
                             .resizable()
                             .scaledToFill()
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
@@ -94,17 +94,17 @@ struct Home: View {
                                 VStack(alignment: .leading) {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: 12) {
-//                                            ForEach(populars, id:\.self) { popular in
-//                                                NavigationLink{ MovieDetail(movie: popular)} label: {
-//                                                    Image(popular.imageName)
-//                                                        .resizable()
-//                                                        .aspectRatio(contentMode: .fill)
-//                                                        .frame(width: 200)
-//                                                        .cornerRadius(12)
-//
-//                                                }
-//
-//                                            }
+                                            ForEach(popularMovies, id:\.self) { popular in
+                                                NavigationLink{ MovieDetailView(movie: popular)} label: {
+                                                    Image(popular.imageName)
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: 200)
+                                                        .cornerRadius(12)
+
+                                                }
+
+                                            }
                                             
                                             
                                         }
@@ -114,7 +114,7 @@ struct Home: View {
                             } .offset(y:20)
                             ZStack(alignment: .leading) {
                                 VStack(alignment: .leading) {
-                                    Text("Popular on Asia")
+                                    Text("Romance Movies")
                                         .fontWeight(.semibold)
                                         .font(.system(size: 25))
                                         .foregroundColor(Color.white)
@@ -126,17 +126,17 @@ struct Home: View {
                                 VStack(alignment: .leading) {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: 12) {
-//                                            ForEach(asias, id:\.self) { asia in
-//                                                NavigationLink{ MovieDetail(movie: asia)} label: {
-//                                                    Image(asia.imageName)
-//                                                        .resizable()
-//                                                        .aspectRatio(contentMode: .fill)
-//                                                        .frame(width: 200)
-//                                                        .cornerRadius(12)
-//                                                    
-//                                                }
-//                                                
-//                                            }
+                                            ForEach(romanceMovies, id:\.self) { romance in
+                                                NavigationLink{ MovieDetail(movie: romance)} label: {
+                                                    Image(romance.imageName)
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: 200)
+                                                        .cornerRadius(12)
+                                                    
+                                                }
+                                                
+                                            }
                                         }
                                     }
                                 }

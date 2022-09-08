@@ -42,11 +42,8 @@ struct MovieList: View {
                                             MovieRow(movie: movie)
                                         }
                                     }
-                                    
                                     .bottomSheet(isPresented: $showMovieInfo) {
                                         MovieDetailSummaryView(movie: movie)
-                                    
-                                        
                                     }
                                 }
                             })
