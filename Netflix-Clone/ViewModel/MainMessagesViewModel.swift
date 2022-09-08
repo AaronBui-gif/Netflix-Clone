@@ -56,7 +56,7 @@ class MainMessagesViewModel: ObservableObject {
         }
     
     func putData(movieID: Int, title: String) {
-        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/huepham1707/\(movieID)") else {
+        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/\(chatUser?.email ?? "")/\(movieID)") else {
             return
         }
         
