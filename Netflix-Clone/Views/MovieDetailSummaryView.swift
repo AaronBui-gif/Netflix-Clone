@@ -12,7 +12,7 @@ struct MovieDetailSummaryView: View {
     // MARK: Properties
     var movie: Movie
     @State var shouldShowTrailer = false
-    
+    @ObservedObject var vm = MainMessagesViewModel()
     // MARK: Body
     var body: some View {
         ZStack{
@@ -62,7 +62,7 @@ struct MovieDetailSummaryView: View {
                     
                     // Download Button
                     Button{
-                        
+                        vm.putData(movieID: movie.movieID, title: movie.title)
                     } label: {
                         VStack {
                             Image(systemName: "arrow.down.to.line")

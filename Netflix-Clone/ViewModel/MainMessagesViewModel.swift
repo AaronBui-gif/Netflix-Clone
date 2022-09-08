@@ -9,7 +9,7 @@ import SDWebImageSwiftUI
 import Firebase
 
 class MainMessagesViewModel: ObservableObject {
-
+    
     @Published var errorMessage = ""
     @Published var chatUser: User?
     @Published var isUserCurrentlyLoggedOut = false
@@ -17,14 +17,14 @@ class MainMessagesViewModel: ObservableObject {
     // MARK: Initialize
     init() {
         DispatchQueue.main.async {
-                    self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
-                }
+            self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
+        }
         fetchCurrentUser()
     }
-
+    
     // MARK: Fetch User
     func fetchCurrentUser() {
-
+        
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             self.errorMessage = "Could not find firebase uid"
             return
@@ -48,36 +48,74 @@ class MainMessagesViewModel: ObservableObject {
         
     }
     
-  
+    
     // MARK: Handle Sign Out
     func handleSignOut() {
             isUserCurrentlyLoggedOut.toggle()
             try? FirebaseManager.shared.auth.signOut()
         }
     
-    
-    // MARK: fetch api
-    func fetch() {
-    guard let url = URL(string: "https://backend-ios.herokuapp.com/user") else {
-        return
-    }
-
-    let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-        guard let data = data, error == nil else {
+    func putData(movieID: Int, title: String) {
+        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/huepham1707/\(movieID)") else {
             return
         }
         
-            // Convert to JSON
-        do {
-            let savedLists = try JSONDecoder().decode([Movie].self, from: data)
-            DispatchQueue.main.async {
-                self?.savedLists = savedLists
+        print("Making api calls...")
+        var request  = URLRequest(url: url)
+        
+        // method, body, headers
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("\(movieID)")
+        print("\(title)")
+        let body: [String: AnyHashable] = [
+            "movieID": movieID,
+            "title": title
+            
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        
+        // Make the request
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                print("SUCCESS: \(response)")
+            }
+            catch {
+                print("FAIL: \(error)")
             }
         }
-        catch {
-            print("FAIL: \(error)")
-        }
+        task.resume()
     }
+    // MARK: fetch api
+    func fetch() {
+        print("Fetching")
+        //guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/\(userName)/\(movieID)") else {
+        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/huepham1707") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            // Convert to JSON
+            do {
+                let savedLists = try JSONDecoder().decode([Movie].self, from: data)
+                DispatchQueue.main.async {
+                    self?.savedLists = savedLists
+                }
+                print("SUCCESS")
+            }
+            catch {
+                print("FAIL: \(error)")
+            }
+        }
         task.resume()
     }
     
@@ -85,7 +123,7 @@ class MainMessagesViewModel: ObservableObject {
         guard let url = URL(string: "https://backend-ios.herokuapp.com/user") else {
             return
         }
-              
+        
         print("Making api calls...")
         var request  = URLRequest(url: url)
         
