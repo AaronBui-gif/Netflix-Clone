@@ -10,13 +10,10 @@ import SwiftUI
 struct MovieDetailView: View {
     @State var tabIndex = 0
     
-    var title = "Movie Title"
-    var description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    
     var movie: Movie
     
     var tabItems = [
-        "Description", "Others"
+        "Episodes", "Trailers", "Others"
     ]
     @State var showMovieInfo = false
     var body: some View {
@@ -56,6 +53,67 @@ struct MovieDetailView: View {
                     }
                     .padding(.top, 8)
                     
+                    Text(movie.title)
+                        .font(.system(size: 24))
+                    .fontWeight(.bold)
+                    Text(movie.welcomeDescription)
+                    VStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: 0) {
+                        Button{
+                            
+                        } label: {
+                            HStack(alignment: .center, spacing: 20){
+                                Image(systemName: "play.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.black)
+                                Text("Play")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .frame(width: 300, height:40, alignment: .center)
+                        .background(Color.white)
+                    }
+                
+                    HStack(alignment: .center, spacing: 0) {
+                        Spacer()
+                       
+                        Button{
+                            //downloadList.append(movie)
+                        } label: {
+                            HStack(alignment: .center, spacing: 20){
+                                Image(systemName: "square.and.arrow.down")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                    .foregroundColor(.black)
+                                Text("Download")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .frame(width: 300, height:40)
+                        .background(Color.gray)
+                        Spacer()
+                    }
+                }
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 12) {
+                            ForEach(movie.castList.indices, id: \.self) { index in
+                                VStack{
+                                    Image(movie.castList[index].castImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 120, height: 130, alignment: .center)
+                                    Text("\(movie.castList[index].castName)")
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
                     VStack (alignment: .leading, spacing: 0) {
                         Rectangle().fill(Color.gray)
                             .frame(height: 0.5)
@@ -74,7 +132,10 @@ struct MovieDetailView: View {
                                     withAnimation(.linear(duration: 0.1)) {
                                         if (tabIndex == 0){
                                             tabIndex = 1
-                                        }else {
+                                        } else if (tabIndex == 1) {
+                                            tabIndex = 2
+                                        }
+                                        else {
                                             tabIndex = 0
                                         }
                                     }
@@ -90,35 +151,43 @@ struct MovieDetailView: View {
                     if (tabIndex == 0){
                         // Movie description
                         VStack (alignment: .leading, spacing: 6) {
-                            Text(movie.title)
-                                .font(.system(size: 24))
-                            .fontWeight(.bold)
-                            Text(movie.welcomeDescription)
-                            ScrollView(.horizontal) {
-                                HStack(spacing: 12) {
-                                    ForEach(movie.castList.indices, id: \.self) { index in
-                                        VStack{
-                                            Image(movie.castList[index].castImage)
-                                                .resizable()
-                                                .frame(width: 150, height: 150, alignment: .center)
-                                            Text("\(movie.castList[index].castName)")
-                                        }
-                                    }
-                                }
+                            HStack {
+                                Image(movie.imageName)
+                                    .frame(width: 200, height: 100, alignment: .leading)
+                                Text(movie.title)
+                                    .foregroundColor(.white)
+                            }
+                            HStack {
+                                Image(movie.imageName)
+                                    .frame(width: 200, height: 100, alignment: .leading)
+                                Text(movie.title)
+                                    .foregroundColor(.white)
+                            }
+                            HStack {
+                                Image(movie.imageName)
+                                    .frame(width: 200, height: 100, alignment: .leading)
+                                Text(movie.title)
+                                    .foregroundColor(.white)
                             }
                         }
-                    }else {
+                    } else if (tabIndex == 1) {
+                        VStack (alignment: .leading, spacing: 6) {
+                            VideoView(videoID: movie.youtubeID)
+                                .frame(width: 370, height: 200, alignment: .center)
+                        }
+                    }
+                    else {
                         LazyVGrid(columns: [
                             GridItem(.flexible(minimum: 100, maximum: 200)),
                             GridItem(.flexible(minimum: 100, maximum: 200)),
                             GridItem(.flexible(minimum: 100, maximum: 200))
-                        ], spacing: 12, content: {
+                        ], spacing: 25, content: {
                             ForEach(movies) { movie in
                                 Button {
                                     showMovieInfo.toggle()
                                 } label: {
                                     HStack(alignment: .center) {
-                                        MovieCardView(imageName: movie.imageName)
+                                        MovieRow(movie: movie)
                                     }
                                 }.bottomSheet(isPresented: $showMovieInfo) {
                                     MovieDetailSummaryView(movie: movie)
