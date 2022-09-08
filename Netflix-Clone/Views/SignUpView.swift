@@ -16,8 +16,9 @@ struct SignUpView: View {
     @State var password = ""
     @State var changeView = false
     @State var shouldShowImagePicker = false
-    
+    @State var sourceType: UIImagePickerController.SourceType = .camera
     @State var loginStatusMessage = ""
+    @State var showActionSheet = false
     // MARK: Image
     @State var image: UIImage?
     @ObservedObject var mainMessageViewModel: MainMessagesViewModel
@@ -51,7 +52,8 @@ struct SignUpView: View {
             
                 // MARK: - User Image
                 Button {
-                    shouldShowImagePicker.toggle()
+                    //shouldShowImagePicker.toggle()
+                    showActionSheet = true
                 } label: {
                     VStack {
                         if let image = self.image {
@@ -70,6 +72,21 @@ struct SignUpView: View {
                     .overlay(RoundedRectangle(cornerRadius: 64)
                         .stroke(Color.white, lineWidth: 3)
                     )
+                }.actionSheet(isPresented: $showActionSheet) {
+                    ActionSheet(title: Text("Add profile picture"), message: nil, buttons: [
+                    // Button 1
+                        .default(Text("Camera"), action: {
+                            self.shouldShowImagePicker = true
+                            self.sourceType = .camera
+                        }),
+                        // Button 2
+                        .default(Text("Photo Library"), action: {
+                            self.shouldShowImagePicker = true
+                            self.sourceType = .photoLibrary
+                        }),
+                        // Button 3
+                            .cancel()
+                    ])
                 }
 
                 
@@ -155,7 +172,7 @@ struct SignUpView: View {
             }
             .foregroundColor(.white)
             .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-                ImagePicker(image: $image)
+                ImagePicker(image: self.$image, showImagePicker: self.$shouldShowImagePicker, sourceType: self.sourceType)
             }
             
         

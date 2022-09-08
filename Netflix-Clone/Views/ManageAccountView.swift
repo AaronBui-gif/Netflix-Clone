@@ -23,6 +23,7 @@ struct ManageAccountView: View {
     @State var newEmail = ""
     @State var saveStatusMessage = ""
     @State var shouldShowImagePicker = false
+    @State var sourceType:UIImagePickerController.SourceType = .camera
     // MARK: Image
     @State var image: UIImage?
     @ObservedObject private var vm = MainMessagesViewModel()
@@ -141,7 +142,7 @@ struct ManageAccountView: View {
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: BackButton)
                 .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-                    ImagePicker(image: $image)
+                    ImagePicker(image: self.$image, showImagePicker: self.$shouldShowImagePicker, sourceType: self.sourceType)
                 }
         }
     }
