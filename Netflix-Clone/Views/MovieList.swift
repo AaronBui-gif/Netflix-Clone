@@ -27,22 +27,13 @@ struct MovieList: View {
                                 GridItem(.flexible(minimum: 100, maximum: 200)),
                                 GridItem(.flexible(minimum: 100, maximum: 200))
                             ], spacing: 12, content: {
-                                ForEach(movies) { movie in
-                                    //                                    NavigationLink {
-                                    //                                        MovieDetail(movie: movie)
-                                    //                                    } label: {
-                                    //                                        HStack(alignment: .center) {
-                                    //                                            MovieRow(movie: movie)
-                                    //                                        }
-                                    //                                    }
+                                ForEach(popularMovies, id:\.self) { movie in
                                     Button {
                                         showMovieInfo.toggle()
                                     } label: {
-                                        HStack(alignment: .center) {
-                                            MovieRow(movie: movie)
-                                        }
-                                    }
-                                    .bottomSheet(isPresented: $showMovieInfo) {
+                                        MovieRow(movie: movie)
+
+                                    }.bottomSheet(isPresented: $showMovieInfo) {
                                         MovieDetailSummaryView(movie: movie)
                                     }
                                 }

@@ -94,6 +94,18 @@ struct MovieDetailView: View {
                                 .font(.system(size: 24))
                             .fontWeight(.bold)
                             Text(movie.welcomeDescription)
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 12) {
+                                    ForEach(movie.castList.indices, id: \.self) { index in
+                                        VStack{
+                                            Image(movie.castList[index].castImage)
+                                                .resizable()
+                                                .frame(width: 150, height: 150, alignment: .center)
+                                            Text("\(movie.castList[index].castName)")
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }else {
                         LazyVGrid(columns: [
@@ -113,10 +125,7 @@ struct MovieDetailView: View {
                                 }
                             }
                         })
-                    }
-                    
-                    
-                    
+                    }        
                 }
                 .foregroundColor(.white)
             .padding(.horizontal, 16)

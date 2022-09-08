@@ -170,6 +170,10 @@ struct SignUpView: View {
     
     // MARK: Create New Account
     private func CreateNewAccount() {
+        if self.image == nil {
+            self.loginStatusMessage = "You must select an avatar image"
+            return
+        }
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) {
             result, err in
             if let err = err {

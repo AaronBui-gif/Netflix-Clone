@@ -11,6 +11,7 @@ import BottomSheet
 
 struct HomeView: View {
     @State var showMovieInfo = false
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         //MARK - Navigation View
         NavigationView{
@@ -150,16 +151,13 @@ struct HomeView: View {
                                                 showMovieInfo.toggle()
                                             } label: {
 //                                            NavigationLink{ MovieDetailView(movie: popular)} label: {
-                                                Image(popular.imageName)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: 200)
-                                                    .cornerRadius(12)
+                                                MovieRow(movie: popular)
 
-                                            }.bottomSheet(isPresented: $showMovieInfo) {
+                                            }.sheet(isPresented: $showMovieInfo) {
                                                 MovieDetailSummaryView(movie: popular)
                                             }
                                         }
+
                                     }
                                 }
                             }

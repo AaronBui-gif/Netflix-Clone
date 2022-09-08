@@ -55,11 +55,11 @@ func ==(lhs: Movie, rhs: Movie) -> Bool {
 // MARK: - CastList
 struct CastList: Codable {
     let castID: Int
-    let castName: String
+    let castName, castImage: String
 
     enum CodingKeys: String, CodingKey {
         case castID = "castId"
-        case castName
+        case castName, castImage
     }
 }
 
