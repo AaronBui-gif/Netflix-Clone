@@ -15,7 +15,9 @@ struct MovieDetailView: View {
     var tabItems = [
         "Episodes", "Trailers", "Others"
     ]
+    @ObservedObject var vm = MainMessagesViewModel()
     @State var showMovieInfo = false
+    
     var body: some View {
         
         ZStack (alignment: .top) {
@@ -81,14 +83,14 @@ struct MovieDetailView: View {
                         Spacer()
                        
                         Button{
-                            //downloadList.append(movie)
+                            vm.putData(movieID: movie.movieID, title: movie.title)
                         } label: {
                             HStack(alignment: .center, spacing: 20){
                                 Image(systemName: "square.and.arrow.down")
                                     .resizable()
                                     .frame(width: 20, height: 20, alignment: .center)
                                     .foregroundColor(.black)
-                                Text("Download")
+                                Text("Add List")
                                     .font(.title2)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.black)
