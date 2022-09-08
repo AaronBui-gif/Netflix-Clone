@@ -19,66 +19,66 @@ struct HomeView: View {
                 Color.black.ignoresSafeArea()
                 
                 // Main content begins
-                ScrollView{
+                ScrollView (showsIndicators: false){
                     VStack(spacing: 0){
-                        //Header
-                        ZStack {
-                            NavigationLink{ MovieDetail(movie: movies[0])} label: {
-                                    ZStack{
-                                        Image(movies[0].imageName)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 390, height: 552)
+                        NavigationLink{ MovieDetailView(movie: movies[0])} label: {
+                                ZStack{
+                                    Image(movies[0].imageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 390, height: 552)
 //                                        .scaledToFill()
 //                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-                                        .opacity(0.65)
-                                        .ignoresSafeArea(.all)
-                                        
-                                        LinearGradient(
-                                            gradient: Gradient(stops: [
-                                                .init(color: .black, location: 0),
-                                                .init(color: .black.opacity(0.1), location: 0.35)]),
-                                                startPoint: .bottom,
-                                                endPoint: .top
-                                        )
-                                    .ignoresSafeArea()
-                                    }
-                            }
-                                
-                                VStack{
-                                    //MARK: - NAVIGATION BAR
-                                    NavigationBar()
-                                        .padding(.top, 42)
-                                    Spacer()
+                                    .opacity(0.65)
+                                    .ignoresSafeArea(.all)
                                     
-                                    //MARK: - CATEGORY/TYPE OF MOVIE
-                                    HStack{
-                                        Text("Anime")
-                                            .font(.system(size: 18))
-                                            .foregroundColor(.white)
-                                            .fontWeight(.semibold)
-    
-                                        
-                                        Image("dot")
-                                            .resizable()
-                                            .frame(width: 6, height: 6, alignment: .center)
-                                        
-                                        Text("Fantasy")
-                                            .font(.system(size: 18))
-                                            .foregroundColor(.white)
-                                            .fontWeight(.medium)
-                                        
-                                        Image("dot")
-                                            .resizable()
-                                            .frame(width: 6, height: 6, alignment: .center)
-                                        
-                                        Text("Mystery")
-                                            .font(.system(size: 18))
-                                            .foregroundColor(.white)
-                                            .fontWeight(.medium)
+                                    LinearGradient(
+                                        gradient: Gradient(stops: [
+                                            .init(color: .black, location: 0),
+                                            .init(color: .black.opacity(0.1), location: 0.35)]),
+                                            startPoint: .bottom,
+                                            endPoint: .top
+                                    )
+                                .ignoresSafeArea()
+                                }
+                        }
+                        .offset(x: 0, y : -40)
+                        .overlay(
+                            VStack{
+                                //MARK: - NAVIGATION BAR
+                                NavigationBar()
+                                    .padding(.top, 28)
+                                Spacer()
+                                                                
+                                //MARK: - CATEGORY/TYPE OF MOVIE
+                                HStack{
+                                    Text("Anime")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+
+                                    
+                                    Image("dot")
+                                        .resizable()
+                                        .frame(width: 6, height: 6, alignment: .center)
+                                    
+                                    Text("Fantasy")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.medium)
+                                    
+                                    Image("dot")
+                                        .resizable()
+                                        .frame(width: 6, height: 6, alignment: .center)
+                                    
+                                    Text("Mystery")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.medium)
                                     }
                                 }
-                            }
+                        )
+                        
                         
                     }
                     .padding(.bottom, 0)
@@ -190,17 +190,19 @@ struct HomeView: View {
                         } .offset(y:20)
                     }
 
-                }//.ignoresSafeArea(.all)
+                }
+                .ignoresSafeArea()
                 //.padding(.top, -90)
                 // Main content ends
 
                 
             }//ZStack
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarHidden(true)
             
             
         }//NavigationView
-        .ignoresSafeArea()
-        .navigationBarHidden(true)
+        
     }
 }
 
