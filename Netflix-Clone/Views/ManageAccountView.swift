@@ -132,6 +132,8 @@ struct ManageAccountView: View {
                             Spacer()
                         } .background(Color.blue)
                     }
+                    Text(self.saveStatusMessage)
+                        .foregroundColor(.red)
                 }
                 
                 
@@ -148,6 +150,15 @@ struct ManageAccountView: View {
     
     // MARK: Persist Image into Firebase Storage
     private func persistImageToStorage() {
+        if self.image == nil {
+            self.saveStatusMessage = "You must select an avatar image"
+            return
+        }
+        
+        if self.newEmail == "" {
+            self.saveStatusMessage = "You must change your name"
+            return
+        }
         //        let filename = UUID().uuidString
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
@@ -175,7 +186,8 @@ struct ManageAccountView: View {
     }
     
     // MARK: Save Info Function
-    private func saveInfo(imageProfileUrl: URL) {        
+    private func saveInfo(imageProfileUrl: URL) {
+        
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let userData = ["email": self.newEmail, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
         FirebaseManager.shared.firestore.collection("users")

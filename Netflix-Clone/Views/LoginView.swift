@@ -158,7 +158,17 @@ struct LoginView: View {
                 
                 HStack {
                     Text("New to Netflix?")
-                    Text("Sign up")
+                    //MY LIST
+                    NavigationLink{
+                        SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                            Text ("Sign Up")
+                                .foregroundColor(Color.white)
+                                .fontWeight(.semibold)
+                    }
                         
                 }
                
