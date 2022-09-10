@@ -142,6 +142,8 @@ struct SignUpView: View {
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Text("Login")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
                         }
                         
                 }
