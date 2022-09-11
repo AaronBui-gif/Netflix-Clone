@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     
     // MARK: - Properties
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let didCompleteLoginProcess: () -> ()
     @State var isLoginMode = true
     @State var email = ""
@@ -23,16 +24,17 @@ struct SignUpView: View {
     @ObservedObject var mainMessageViewModel: MainMessagesViewModel
     // MARK: - Body
     var body: some View {
-        NavigationView {
             ZStack {
                 
                 // MARK: Background Image
                 ZStack {
+                    
+                    Color.black.ignoresSafeArea()
                     Image("login-background")
                         .resizable()
                         .frame(width: 500, height: 800)
                         .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea(.all)
+                        .offset(x: 0, y: 30)
                     
                     LinearGradient(
                         gradient: Gradient(stops: [
@@ -43,9 +45,6 @@ struct SignUpView: View {
                     )
                     .ignoresSafeArea()
                 }
-                
-                
-        
             VStack (spacing: 16){
                 
             
@@ -128,7 +127,7 @@ struct SignUpView: View {
                     .border(.white, width:4)
                     .cornerRadius(2)
                     .opacity(0.85)
-//                    .padding(.horizontal, 40)
+
                 }
                 
                 HStack {
@@ -155,13 +154,38 @@ struct SignUpView: View {
                 .padding(.horizontal, 80)
                 
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading:
+                    HStack(alignment: .center){
+                        //BACK BUTTON
+                        CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
+                        
+                        Spacer()
+                        
+                        //IMAGE NETFLIX
+                        Image("MainPage-logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 124, height: 0, alignment: .center)
+                        .ignoresSafeArea(.all)
+                        .padding(.leading, -56)
+                        
+                        Spacer()
+
+                    }
+                    .frame(width: 390, height: 60, alignment: .center)
+                    .background(LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: Color.black, location: 0),
+                            .init(color: Color.black.opacity(1), location: 1)]),
+                            startPoint: .top,
+                            endPoint: .bottom).ignoresSafeArea(.all))
+            )
             .foregroundColor(.white)
             .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                 ImagePicker(image: $image)
             }
-            
-        
-        }
     }
     
     // MARK: Function handle login
