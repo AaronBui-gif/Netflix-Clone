@@ -169,10 +169,7 @@ struct LoginView: View {
                                 .foregroundColor(Color.white)
                                 .fontWeight(.semibold)
                     }
-                        
                 }
-               
-                
                 Text(self.loginStatusMessage)
                     .foregroundColor(.red)
                 
@@ -210,11 +207,6 @@ struct LoginView: View {
                             endPoint: .bottom).ignoresSafeArea(.all))
             )
             .foregroundColor(.white)
- 
-            
-        
-       
-        
     }
     
     

@@ -14,8 +14,8 @@
             filePath = "Netflix-Clone/Views/LoginView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "storeUserInformation(imageProfileUrl:)"
             landmarkType = "7">
          </BreakpointContent>
