@@ -108,8 +108,9 @@ struct MovieDetailView: View {
                                 VStack{
                                     Image(movie.castList[index].castImage)
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 120, height: 130, alignment: .center)
+                                        .aspectRatio(2/3,contentMode: .fit)
+//                                        .frame(width: 120, height: 130, alignment: .center)
+                                        .frame(height: 130, alignment: .center)
                                     Text("\(movie.castList[index].castName)")
                                     
                                 }
