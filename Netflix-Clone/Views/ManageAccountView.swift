@@ -200,7 +200,7 @@ struct ManageAccountView: View {
 
                 print("Success")
                 if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = UIHostingController(rootView: Home())
+                    window.rootViewController = UIHostingController(rootView: HomeView())
                     window.makeKeyAndVisible()
                 }
             }

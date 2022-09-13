@@ -76,7 +76,7 @@ struct NavigationBar: View {
             HStack(alignment: .center, spacing: 70){
                 //TV SHOWS
                 NavigationLink{
-                    Home()
+                    HomeView()
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
@@ -88,7 +88,7 @@ struct NavigationBar: View {
                 
                 //MOVIES
                 NavigationLink{
-                    Home()
+                    HomeView()
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
