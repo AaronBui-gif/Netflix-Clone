@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var tabIndex = 0
     
     var movie: Movie
@@ -153,24 +154,7 @@ struct MovieDetailView: View {
                     if (tabIndex == 0){
                         // Movie description
                         VStack (alignment: .leading, spacing: 6) {
-                            HStack {
-                                Image(movie.imageName)
-                                    .frame(width: 200, height: 100, alignment: .leading)
-                                Text(movie.title)
-                                    .foregroundColor(.white)
-                            }
-                            HStack {
-                                Image(movie.imageName)
-                                    .frame(width: 200, height: 100, alignment: .leading)
-                                Text(movie.title)
-                                    .foregroundColor(.white)
-                            }
-                            HStack {
-                                Image(movie.imageName)
-                                    .frame(width: 200, height: 100, alignment: .leading)
-                                Text(movie.title)
-                                    .foregroundColor(.white)
-                            }
+
                         }
                     } else if (tabIndex == 1) {
                         VStack (alignment: .leading, spacing: 6) {
@@ -185,24 +169,57 @@ struct MovieDetailView: View {
                             GridItem(.flexible(minimum: 100, maximum: 200))
                         ], spacing: 25, content: {
                             ForEach(movies) { movie in
-                                Button {
-                                    showMovieInfo.toggle()
+                                NavigationLink{
+                                    MovieDetailView(movie: movie)
+                                        .navigationBarTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarTitleDisplayMode(.inline)
                                 } label: {
-                                    HStack(alignment: .center) {
+                                    HStack(alignment: .center){
                                         MovieRow(movie: movie)
-                                    }
-                                }.bottomSheet(isPresented: $showMovieInfo) {
-                                    MovieDetailSummaryView(movie: movie)
+                                }
                                 }
                             }
                         })
-                    }        
+                    }
+                    
                 }
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(
+                    leading:
+                        HStack(alignment: .center){
+                            //BACK BUTTON
+                            CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
+                            
+                            Spacer()
+                            
+                            //IMAGE NETFLIX
+                            Image("MainPage-logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 124, height: 0, alignment: .center)
+                            .ignoresSafeArea(.all)
+                            .padding(.leading, -56)
+                            
+                            Spacer()
+
+                        }
+                        .frame(width: 390, height: 60, alignment: .center)
+                        .background(LinearGradient(
+                            gradient: Gradient(stops: [
+                                .init(color: Color.black, location: 0),
+                                .init(color: Color.black.opacity(1), location: 1)]),
+                                startPoint: .top,
+                                endPoint: .bottom).ignoresSafeArea(.all))
+                )
+                .foregroundColor(.white)
                 .foregroundColor(.white)
             .padding(.horizontal, 16)
             }
+
             
         }
+        
     }
 }
 

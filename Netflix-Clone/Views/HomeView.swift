@@ -147,14 +147,10 @@ struct HomeView: View {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
                                         ForEach(popularMovies, id:\.self) { popular in
-                                            Button {
-                                                showMovieInfo.toggle()
+                                            NavigationLink{
+                                                MovieDetailView(movie: popular)
                                             } label: {
-//                                            NavigationLink{ MovieDetailView(movie: popular)} label: {
-                                                MovieRow(movie: popular)
-
-                                            }.sheet(isPresented: $showMovieInfo) {
-                                                MovieDetailSummaryView(movie: popular)
+                                                    MovieRow(movie: popular)
                                             }
                                         }
 
@@ -169,18 +165,10 @@ struct HomeView: View {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
                                         ForEach(romanceMovies, id:\.self) { romance in
-                                            Button {
-                                                showMovieInfo.toggle()
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
                                             } label: {
-//                                            NavigationLink{ MovieDetailView(movie: popular)} label: {
-                                                Image(romance.imageName)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: 200)
-                                                    .cornerRadius(12)
-
-                                            }.bottomSheet(isPresented: $showMovieInfo) {
-                                                MovieDetailSummaryView(movie: romance)
+                                                    MovieRow(movie: romance)
                                             }
                                         }
                                     }
