@@ -54,6 +54,7 @@ struct SplashScreenView: View {
     }
 }
 
+// MARK: Preview
 struct SplashScreenView_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreenView()

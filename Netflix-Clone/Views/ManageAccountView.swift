@@ -23,6 +23,7 @@ struct ManageAccountView: View {
     @State var newEmail = ""
     @State var saveStatusMessage = ""
     @State var shouldShowImagePicker = false
+    @State var saveList: [SaveList] = []
     // MARK: Image
     @State var image: UIImage?
     @ObservedObject private var vm = MainMessagesViewModel()
@@ -200,7 +201,7 @@ struct ManageAccountView: View {
 
                 print("Success")
                 if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = UIHostingController(rootView: HomeView())
+                    window.rootViewController = UIHostingController(rootView: HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList))
                     window.makeKeyAndVisible()
                 }
             }
@@ -215,18 +216,16 @@ struct ManageAccountView: View {
                     self.saveStatusMessage = "\(err)"
                     return
                 }
-
                 print("Success")
                 if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = UIHostingController(rootView: LoginView(didCompleteLoginProcess: {}))
+                    window.rootViewController = UIHostingController(rootView: LoginView(mainMessageViewModel: MainMessagesViewModel(),didCompleteLoginProcess: {}))
                     window.makeKeyAndVisible()
                 }
             }
     }
 }
 
-
-
+// MARK: Preview
 struct ManageAccountView_Previews: PreviewProvider {
     static var previews: some View {
         ManageAccountView()

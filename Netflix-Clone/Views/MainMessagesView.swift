@@ -66,7 +66,7 @@ struct MainMessagesView: View {
             ])
         }
         .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
-            LoginView(didCompleteLoginProcess: {
+            LoginView(mainMessageViewModel: MainMessagesViewModel(),didCompleteLoginProcess: {
                 self.vm.isUserCurrentlyLoggedOut = false
                 self.vm.fetchCurrentUser()
             })

@@ -24,7 +24,7 @@ struct ProfileSettingsView: View {
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     
-    // MARL: Custom Navigation Bar
+    // MARK: Custom Navigation Bar
     var BackButton: some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {
@@ -38,23 +38,21 @@ struct ProfileSettingsView: View {
     }
     }
     
+    // MARK: BODY
     var body: some View {
         NavigationView{
             ZStack{
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 30) {
                     
-                    
+                    // MARK: User Profile Picture
                     WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                         .resizable()
                         .scaledToFill()
                         .frame(width: 100, height: 100)
                         .clipped()
                         .cornerRadius(20)
-                    
-                    
-                    
-                    
+                     
                     // MARK: Email
                     let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
                     
@@ -77,7 +75,7 @@ struct ProfileSettingsView: View {
                         }
                     
                     // MARK: Movie List
-                    NavigationLink{ MovieList().navigationBarTitle("")
+                    NavigationLink{  SaveListView().navigationBarTitle("")
                             .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)} label: {
                             HStack {
@@ -90,7 +88,7 @@ struct ProfileSettingsView: View {
                         }
                     
                     // MARK: Setting
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Setting")
                                 .font(.system(size: 24, weight: .bold))
@@ -99,7 +97,7 @@ struct ProfileSettingsView: View {
                     }
                     
                     // MARK: Account
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Account")
                                 .font(.system(size: 24, weight: .bold))
@@ -108,7 +106,7 @@ struct ProfileSettingsView: View {
                     }
                     
                     // MARK: Help
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Help")
                                 .font(.system(size: 24, weight: .bold))
@@ -134,8 +132,10 @@ struct ProfileSettingsView: View {
                             .cancel()
                         ])
                     }
+                
+                // MARK: User Log Out Sheet
                     .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
-                        LoginView(didCompleteLoginProcess: {
+                        LoginView(mainMessageViewModel: MainMessagesViewModel(), didCompleteLoginProcess: {
                             self.vm.isUserCurrentlyLoggedOut = false
                             self.vm.fetchCurrentUser()
                         })
@@ -150,6 +150,7 @@ struct ProfileSettingsView: View {
     }
 }
 
+// MARK: Preview
 struct ProfileSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSettingsView()

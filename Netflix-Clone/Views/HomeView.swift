@@ -10,37 +10,45 @@ import Foundation
 import BottomSheet
 
 struct HomeView: View {
+    
+    // MARK: Properties
     @State var showMovieInfo = false
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var mainMessageViewModel: MainMessagesViewModel
+    @Binding var saveList: [SaveList]
+    // MARK: BODY
     var body: some View {
-        //MARK - Navigation View
+        //MARK: - Navigation View
         NavigationView{
             ZStack{
+                // MARK: Background COlor
                 Color.black.ignoresSafeArea()
                 
-                // Main content begins
+                // MARK: MAIN CONTENT
                 ScrollView (showsIndicators: false){
                     VStack(spacing: 0){
                         NavigationLink{ MovieDetailView(movie: movies[0])} label: {
-                                ZStack{
-                                    Image(movies[0].imageName)
+                            ZStack{
+                                
+                                // MARK: First item
+                                Image(movies[0].imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 390, height: 552)
-//                                        .scaledToFill()
-//                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+                                //                                        .scaledToFill()
+                                //                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
                                     .opacity(0.65)
                                     .ignoresSafeArea(.all)
-                                    
-                                    LinearGradient(
-                                        gradient: Gradient(stops: [
-                                            .init(color: .black, location: 0),
-                                            .init(color: .black.opacity(0.1), location: 0.35)]),
-                                            startPoint: .bottom,
-                                            endPoint: .top
-                                    )
+                                
+                                LinearGradient(
+                                    gradient: Gradient(stops: [
+                                        .init(color: .black, location: 0),
+                                        .init(color: .black.opacity(0.1), location: 0.35)]),
+                                    startPoint: .bottom,
+                                    endPoint: .top
+                                )
                                 .ignoresSafeArea()
-                                }
+                            }
                         }
                         .offset(x: 0, y : -40)
                         .overlay(
@@ -49,14 +57,14 @@ struct HomeView: View {
                                 NavigationBar()
                                     .padding(.top, 28)
                                 Spacer()
-                                                                
+                                
                                 //MARK: - CATEGORY/TYPE OF MOVIE
                                 HStack{
                                     Text("Anime")
                                         .font(.system(size: 18))
                                         .foregroundColor(.white)
                                         .fontWeight(.semibold)
-
+                                    
                                     
                                     Image("dot")
                                         .resizable()
@@ -75,8 +83,8 @@ struct HomeView: View {
                                         .font(.system(size: 18))
                                         .foregroundColor(.white)
                                         .fontWeight(.medium)
-                                    }
                                 }
+                            }
                         )
                         
                         
@@ -141,6 +149,8 @@ struct HomeView: View {
                     
                     //MARK: - BODY
                     VStack (spacing: 24){
+                        
+                        // MARK: New release movies
                         MovieCarouselView(secionTitle: "New Release")
                         ZStack(alignment: .leading) {
                             VStack(alignment: .leading) {
@@ -150,15 +160,17 @@ struct HomeView: View {
                                             NavigationLink{
                                                 MovieDetailView(movie: popular)
                                             } label: {
-                                                    MovieRow(movie: popular)
+                                                MovieRow(movie: popular)
                                             }
                                         }
-
+                                        
                                     }
                                 }
                             }
                             .padding(8)
                         } .offset(y:20)
+                        
+                        // MARK: Romance movies
                         MovieCarouselView(secionTitle: "Romance")
                         ZStack(alignment: .leading) {
                             VStack(alignment: .leading) {
@@ -168,7 +180,7 @@ struct HomeView: View {
                                             NavigationLink{
                                                 MovieDetailView(movie: romance)
                                             } label: {
-                                                    MovieRow(movie: romance)
+                                                MovieRow(movie: romance)
                                             }
                                         }
                                     }
@@ -177,14 +189,24 @@ struct HomeView: View {
                             .padding(8)
                         } .offset(y:20)
                     }
-
+                    
                 }
+                
+//                // MARK: Fetching saved list
+//                .onAppear(){
+//                    mainMessageViewModel.fetch()
+//                }
                 .ignoresSafeArea()
                 //.padding(.top, -90)
                 // Main content ends
-
+                
                 
             }//ZStack
+//            // MARK: Fetching saved list
+//            .onAppear(){
+//                
+//                mainMessageViewModel.fetch()
+//            }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
             
@@ -194,8 +216,9 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//// MARK: Preview
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//       HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: SaveList)
+//    }
+//}

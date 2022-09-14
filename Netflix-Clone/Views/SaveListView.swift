@@ -1,18 +1,24 @@
 //
-//  MovieList.swift
-//  RmitFlix
+//  SaveListView.swift
+//  Netflix-Clone
 //
-//  Created by Huy Bui Thanh on 19/07/2022.
+//  Created by Huy Bui Thanh on 13/09/2022.
 //
 
 import SwiftUI
-import BottomSheet
 
-struct MovieList: View {
+struct SaveListView: View {
     
-    // MARK: Properties
-    @State var showMovieInfo = false
+    // MARK: PROPERTIES
+    @ObservedObject var vm : MainMessagesViewModel
     
+    var saveList: [SaveList] = []
+    init(){
+        let local = MainMessagesViewModel()
+        self.vm = local
+        let savingList:[SaveList] = loads(inputJsonURL: "https://backend-ios.herokuapp.com/saveList/userName/\(vm.chatUser?.email ?? "")")
+        self.saveList = savingList
+    }
     // MARK: BODY
     var body: some View {
         NavigationView {
@@ -34,17 +40,23 @@ struct MovieList: View {
                                 GridItem(.flexible(minimum: 100, maximum: 200)),
                                 GridItem(.flexible(minimum: 100, maximum: 200))
                             ], spacing: 12, content: {
-                                ForEach(popularMovies, id:\.self) { movie in
-                                    // MARK: Displaying MOVIES
+                                
+                                // MARK: Display save list movie
+                                ForEach(vm.savedLists, id:\.self) { movie in
+                                    //MOVIES
                                     NavigationLink{
-                                        MovieDetailView(movie: movie)
+                                        MovieDetailView(movie: movie.movie)
                                     } label: {
-                                            MovieRow(movie: movie)
+                                        
+                                        MovieRow(movie: movie.movie)
+                                       Text("\(movie.movie.title)")
                                     }
                                     
                                 }
                             })
-                        }.navigationBarTitle("Movies")
+                        }
+                        
+                        .navigationBarTitle("Movies")
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarBackButtonHidden(true)
                         
@@ -64,14 +76,15 @@ struct MovieList: View {
                 .navigationBarHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear{
+            vm.fetch()
+        }
     }
 }
 
 // MARK: Preview
-struct MovieList_Previews: PreviewProvider {
+struct SaveListView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieList()
+        SaveListView()
     }
-    
 }
-
