@@ -17,7 +17,7 @@ import SDWebImageSwiftUI
 struct ProfileSettingsView: View {
     
     // MARK: Properties
-    @State var shouldShowLogOutOptions = false
+    @State var shouldShowLogOutOptions = false //ty sua lai thanh` False
     @State var email = ""
     @ObservedObject private var vm = MainMessagesViewModel()
     
@@ -32,8 +32,10 @@ struct ProfileSettingsView: View {
             Image(systemName: "arrow.backward")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.white)
-            Text("Profile & Other Contents")
+            Text("User")
                 .foregroundColor(.white)
+                .fontWeight(.heavy)
+                .font(.system(size: 20))
         }
     }
     }
@@ -62,59 +64,131 @@ struct ProfileSettingsView: View {
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.white)
                         .frame(alignment:.center)
-                    
-                    // MARK: Manage Accounts
-                    NavigationLink{ ManageAccountView().navigationBarTitle("")
-                            .navigationBarHidden(true)
-                        .navigationBarTitleDisplayMode(.inline)} label: {
+                    List{
+                        // MARK: Manage Accounts
+                        NavigationLink{ ManageAccountView().navigationBarTitle("")
+                                .navigationBarHidden(true)
+                            .navigationBarTitleDisplayMode(.inline)} label: {
+                                HStack {
+                                    Image(systemName: "pencil")
+                                        .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.68))
+                                        .frame(width: 24, height: 24)
+                                    Text("Manage Account")
+                                        .font(.system(size: 22, weight: .bold))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .listRowBackground(Color.clear)
+                        
+                        // MARK: Movie List
+                        NavigationLink{ MovieList().navigationBarTitle("")
+                                .navigationBarHidden(true)
+                            .navigationBarTitleDisplayMode(.inline)} label: {
+                                HStack {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.68))
+                                        .frame(width: 22, height: 24)
+                                    Text("Movie List")
+                                        .font(.system(size: 24, weight: .bold))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .listRowBackground(Color.clear)
+                        // MARK: Setting
+                        NavigationLink{ Text("123")} label: {
                             HStack {
-                                Image(systemName: "pencil")
-                                    .foregroundColor(.gray)
-                                Text("Manage Account")
-                                    .font(.system(size: 24, weight: .bold))
+                                Image(systemName: "person")
+                                    .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.68))
+                                    .frame(width: 24, height: 24)
+                                Text("Setting")
+                                    .font(.system(size: 22, weight: .bold))
                                     .foregroundColor(.gray)
                             }
                         }
-                    
-                    // MARK: Movie List
-                    NavigationLink{ MovieList().navigationBarTitle("")
-                            .navigationBarHidden(true)
-                        .navigationBarTitleDisplayMode(.inline)} label: {
+                        .listRowBackground(Color.clear)
+                        // MARK: Account
+                        NavigationLink{ Text("123")} label: {
                             HStack {
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.gray)
-                                Text("Movie List")
-                                    .font(.system(size: 24, weight: .bold))
+                                Image("settings")
+                                    .resizable()
+                                    .frame(width: 22, height: 22)
+                                Text("Account")
+                                    .font(.system(size: 22, weight: .bold))
                                     .foregroundColor(.gray)
                             }
                         }
-                    
-                    // MARK: Setting
-                    NavigationLink{ Text("123")} label: {
-                        HStack {
-                            Text("Setting")
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(.gray)
+                        .listRowBackground(Color.clear)
+                        // MARK: Help
+                        NavigationLink{ Text("123")} label: {
+                            HStack {
+                                Image(systemName: "questionmark.circle")
+                                    .foregroundColor(Color(red: 0.64, green: 0.67, blue: 0.68))
+                                    .frame(width: 24, height: 24)
+                                Text("Help")
+                                    .font(.system(size: 22, weight: .bold))
+                                    .foregroundColor(.gray)
+                            }
                         }
+                        .listRowBackground(Color.clear)
+
                     }
+                    .frame(height: 300)
+                    .listStyle(.plain)
+                    .background(.black)
                     
-                    // MARK: Account
-                    NavigationLink{ Text("123")} label: {
-                        HStack {
-                            Text("Account")
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(.gray)
-                        }
-                    }
                     
-                    // MARK: Help
-                    NavigationLink{ Text("123")} label: {
-                        HStack {
-                            Text("Help")
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(.gray)
-                        }
-                    }
+//                    // MARK: Manage Accounts
+//                    NavigationLink{ ManageAccountView().navigationBarTitle("")
+//                            .navigationBarHidden(true)
+//                        .navigationBarTitleDisplayMode(.inline)} label: {
+//                            HStack {
+//                                Image(systemName: "pencil")
+//                                    .foregroundColor(.gray)
+//                                Text("Manage Account")
+//                                    .font(.system(size: 24, weight: .bold))
+//                                    .foregroundColor(.gray)
+//                            }
+//                        }
+//
+//                    // MARK: Movie List
+//                    NavigationLink{ MovieList().navigationBarTitle("")
+//                            .navigationBarHidden(true)
+//                        .navigationBarTitleDisplayMode(.inline)} label: {
+//                            HStack {
+//                                Image(systemName: "checkmark")
+//                                    .foregroundColor(.gray)
+//                                Text("Movie List")
+//                                    .font(.system(size: 24, weight: .bold))
+//                                    .foregroundColor(.gray)
+//                            }
+//                        }
+//
+//                    // MARK: Setting
+//                    NavigationLink{ Text("123")} label: {
+//                        HStack {
+//                            Text("Setting")
+//                                .font(.system(size: 24, weight: .bold))
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//
+//                    // MARK: Account
+//                    NavigationLink{ Text("123")} label: {
+//                        HStack {
+//                            Text("Account")
+//                                .font(.system(size: 24, weight: .bold))
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//
+//                    // MARK: Help
+//                    NavigationLink{ Text("123")} label: {
+//                        HStack {
+//                            Text("Help")
+//                                .font(.system(size: 24, weight: .bold))
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
                     
                     // MARK: Log out
                     Button {
@@ -141,7 +215,6 @@ struct ProfileSettingsView: View {
                         })
                     }
                 
-                
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
@@ -153,5 +226,6 @@ struct ProfileSettingsView: View {
 struct ProfileSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSettingsView()
+            .preferredColorScheme(.light)
     }
 }

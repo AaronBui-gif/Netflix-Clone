@@ -65,9 +65,10 @@ struct NavigationBar: View {
                     WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 40, height: 45)
+                        .frame(width: 32, height: 32)
                         .clipped()
                         .cornerRadius(15)
+                        .padding(.trailing, 14)
                     }
             }
             .padding(.bottom, 10)
