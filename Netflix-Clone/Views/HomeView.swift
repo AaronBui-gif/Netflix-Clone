@@ -149,7 +149,7 @@ struct HomeView: View {
                     
                     //MARK: - BODY
                     VStack (spacing: 24){
-                        
+                        Group{
                         // MARK: New release movies
                         MovieCarouselView(secionTitle: "New Release")
                         ZStack(alignment: .leading) {
@@ -168,7 +168,7 @@ struct HomeView: View {
                                 }
                             }
                             .padding(8)
-                        } .offset(y:20)
+                        } .offset(y:-20)
                         
                         // MARK: Romance movies
                         MovieCarouselView(secionTitle: "Romance")
@@ -187,26 +187,109 @@ struct HomeView: View {
                                 }
                             }
                             .padding(8)
-                        } .offset(y:20)
+                        } .offset(y:-20)
+                        
+                        // MARK: Horror movies
+                        MovieCarouselView(secionTitle: "Horror")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(horrorMovies, id:\.self) { romance in
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
+                                            } label: {
+                                                MovieRow(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        } .offset(y:-20)
+                        
+                        // MARK: Action movies
+                        MovieCarouselView(secionTitle: "Action")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(actionMovies, id:\.self) { romance in
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
+                                            } label: {
+                                                MovieRow(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        } .offset(y:-20)
+                        
+                        // MARK: Thriller movies
+                        MovieCarouselView(secionTitle: "Thriller")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(thrillerMovies, id:\.self) { romance in
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
+                                            } label: {
+                                                MovieRow(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        } .offset(y:-20)
+                        }
+                        
+                        // MARK: Comedy movies
+                        MovieCarouselView(secionTitle: "Comedy")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(comedyMovies, id:\.self) { romance in
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
+                                            } label: {
+                                                MovieRow(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        }.offset(y:-20)
+                        
+                        // MARK: Sci-Fic movies
+                        MovieCarouselView(secionTitle: "Comedy")
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 12) {
+                                        ForEach(scificMovies, id:\.self) { romance in
+                                            NavigationLink{
+                                                MovieDetailView(movie: romance)
+                                            } label: {
+                                                MovieRow(movie: romance)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(8)
+                        }.offset(y:-20)
                     }
                     
                 }
-                
-//                // MARK: Fetching saved list
-//                .onAppear(){
-//                    mainMessageViewModel.fetch()
-//                }
-                .ignoresSafeArea()
-                //.padding(.top, -90)
+            .ignoresSafeArea()
                 // Main content ends
-                
-                
             }//ZStack
-//            // MARK: Fetching saved list
-//            .onAppear(){
-//                
-//                mainMessageViewModel.fetch()
-//            }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
             
@@ -215,10 +298,3 @@ struct HomeView: View {
         
     }
 }
-
-//// MARK: Preview
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//       HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: SaveList)
-//    }
-//}

@@ -102,7 +102,7 @@ struct NavigationBar: View {
                 
                 //MARK: MOVIE LIST
                 NavigationLink{
-                    MovieList()
+                    SaveListView()
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)

@@ -49,7 +49,6 @@ struct SaveListView: View {
                                     } label: {
                                         
                                         MovieRow(movie: movie.movie)
-                                       Text("\(movie.movie.title)")
                                     }
                                     
                                 }

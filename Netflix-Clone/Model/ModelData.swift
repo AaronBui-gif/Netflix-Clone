@@ -12,6 +12,12 @@ import SwiftUI
 var movies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie?fbclid=IwAR2OetUECYxuzW7gBPspT9H8XWaoNa4kwhToxcb4g6Er3S31nTNcH8JJJ0s")
 var popularMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/popularMovies")
 var romanceMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Romance")
+var horrorMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Horror")
+var actionMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Action")
+var thrillerMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Thriller")
+var comedyMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Comedy")
+var scificMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Sci-Fic")
+
 // MARK: Function load API
 func load(inputJsonURL: String) -> [Movie] {
     if let url = URL(string: inputJsonURL) {
