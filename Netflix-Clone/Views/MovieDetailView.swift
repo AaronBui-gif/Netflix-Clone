@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+    
+    // MARK: Properties
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var tabIndex = 0
-    
     var movie: Movie
-    
     var tabItems = [
         "Episodes", "Trailers", "Others"
     ]
+    
     @ObservedObject var vm = MainMessagesViewModel()
     @State var showMovieInfo = false
     
+    // MARK: BODY
     var body: some View {
         
         ZStack (alignment: .top) {
@@ -28,16 +30,26 @@ struct MovieDetailView: View {
                     VideoView(videoID: movie.youtubeID)
                         .frame(width: 370, height: 200, alignment: .center)
                     
-                    // Save to List button SAVE TO LIST BUTTON
+                    // MARK: Save to List button SAVE TO LIST BUTTON
                     HStack (alignment: .center, spacing: 28) {
                         VStack (spacing: 4){
-                            Image(systemName: "plus")
-                                .font(.system(size: 20))
-                            Text("Save to My List")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color.gray)
+                            
+                            // MARK: - Submit button
+                            Button {
+                                vm.putData(movieID: movie.movieID, title: movie.title)
+                            } label: {
+                                VStack(spacing: 4){
+                                Image(systemName: "plus")
+                                    .font(.system(size: 20))
+                                Text("Save to My List")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color.gray)
+                                }
+                            }
+                           
                         }
                         
+                        // MARK: Ranking button
                         VStack (spacing: 4){
                             Image(systemName: "hand.thumbsup")
                             Text("Ranking")
@@ -45,6 +57,7 @@ struct MovieDetailView: View {
                                 .foregroundColor(Color.gray)
                         }
                         
+                        // MARK: Share button
                         VStack (spacing: 4){
                             Image(systemName: "arrowshape.turn.up.right")
                                 .font(.system(size: 20))
@@ -56,12 +69,17 @@ struct MovieDetailView: View {
                     }
                     .padding(.top, 8)
                     
+                    // MARK: Movie Title
                     Text(movie.title)
                         .font(.system(size: 24))
                     .fontWeight(.bold)
+                    
+                    //MARK: Movie Description
                     Text(movie.welcomeDescription)
                     VStack(alignment: .center) {
                     HStack(alignment: .center, spacing: 0) {
+                        
+                        // MARK: Play Button
                         Button{
                             
                         } label: {
@@ -80,11 +98,13 @@ struct MovieDetailView: View {
                         .background(Color.white)
                     }
                 
+                    // MARK: Add List Button
                     HStack(alignment: .center, spacing: 0) {
                         Spacer()
                        
                         Button{
                             vm.putData(movieID: movie.movieID, title: movie.title)
+                            vm.fetch()
                         } label: {
                             HStack(alignment: .center, spacing: 20){
                                 Image(systemName: "square.and.arrow.down")
@@ -104,6 +124,8 @@ struct MovieDetailView: View {
                 }
                     ScrollView(.horizontal) {
                         HStack(spacing: 12) {
+                            
+                            // MARK: Displaying Cast
                             ForEach(movie.castList.indices, id: \.self) { index in
                                 VStack{
                                     Image(movie.castList[index].castImage)
@@ -147,10 +169,8 @@ struct MovieDetailView: View {
                             }
                         }
                     }
-                    
-                    
-                    
-                    // Tab content
+
+                    // MARK: Tab content
                     if (tabIndex == 0){
                         // Movie description
                         VStack (alignment: .leading, spacing: 6) {
@@ -168,6 +188,8 @@ struct MovieDetailView: View {
                             GridItem(.flexible(minimum: 100, maximum: 200)),
                             GridItem(.flexible(minimum: 100, maximum: 200))
                         ], spacing: 25, content: {
+                            
+                            // MARK: Display movies option
                             ForEach(movies) { movie in
                                 NavigationLink{
                                     MovieDetailView(movie: movie)
@@ -188,7 +210,7 @@ struct MovieDetailView: View {
                 .navigationBarItems(
                     leading:
                         HStack(alignment: .center){
-                            //BACK BUTTON
+                            //MARK: CUSTOM BACK BUTTON NAVIGATION BAR
                             CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
                             
                             Spacer()
@@ -223,6 +245,7 @@ struct MovieDetailView: View {
     }
 }
 
+// MARK: Preview
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MovieDetailView(movie: movies[0])

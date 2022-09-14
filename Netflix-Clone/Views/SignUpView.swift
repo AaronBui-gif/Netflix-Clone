@@ -22,7 +22,8 @@ struct SignUpView: View {
     // MARK: Image
     @State var image: UIImage?
     @ObservedObject var mainMessageViewModel: MainMessagesViewModel
-    // MARK: - Body
+    
+    // MARK: - BODY
     var body: some View {
             ZStack {
                 
@@ -135,7 +136,7 @@ struct SignUpView: View {
                     
                     // MARK: Login
                     NavigationLink{
-                        LoginView(didCompleteLoginProcess: {})
+                        LoginView(mainMessageViewModel: MainMessagesViewModel(), didCompleteLoginProcess: {})
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
@@ -264,6 +265,7 @@ struct SignUpView: View {
     }
 }
 
+// MARK: Preview
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())

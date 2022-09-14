@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ComingSoonView: View {
+    
+    // MARK: BODY
     var body: some View {
         NavigationView{
             ZStack{
@@ -17,6 +19,8 @@ struct ComingSoonView: View {
                     ScrollView {
                         VStack(spacing: 0){
                             VStack{
+                                
+                                // MARK: Navigation Bar
                                 NavigationBar()
                                     .padding(.top, 42)
                                 Spacer()

@@ -21,10 +21,12 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     private let controller = UIImagePickerController()
     
+    // MARK: Function make coordinator
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
     
+    // MARK: Class Coordinator
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         let parent: ImagePicker

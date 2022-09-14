@@ -28,6 +28,7 @@ struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK: - Properties
+    @ObservedObject var mainMessageViewModel: MainMessagesViewModel
     let didCompleteLoginProcess: () -> ()
     @State var isLoginMode = true
     @State var email = ""
@@ -255,11 +256,21 @@ struct LoginView: View {
             print("Successsfully logged in as user: \(result?.user.uid  ?? "")")
             
             self.loginStatusMessage = "Successsfully logged in as user: \(result?.user.uid  ?? "")"
-            
+            mainMessageViewModel.fetch()
+            print("Email: \(email)")
+            let url = URL(string: "https://backend-ios.herokuapp.com/saveList/userName/\(email)")
+            @State var saveList: [SaveList] = loads(inputJsonURL: "https://backend-ios.herokuapp.com/saveList/userName/\(email)")
+            print("List1")
+            for list in saveList {
+                print("\(list)")
+            }
+            if (saveList.isEmpty){
+                print("List empty")
+            }
             self.didCompleteLoginProcess()
             //self.changeView.toggle()
             if let window = UIApplication.shared.windows.first {
-                window.rootViewController = UIHostingController(rootView: HomeView())
+                window.rootViewController = UIHostingController(rootView: HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList))
                 window.makeKeyAndVisible()
             }
         
@@ -329,6 +340,6 @@ struct CustomBackButtonView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(didCompleteLoginProcess: {})
+        LoginView(mainMessageViewModel: MainMessagesViewModel() ,didCompleteLoginProcess: {})
     }
 }

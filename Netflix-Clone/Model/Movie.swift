@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: Movie
 struct Movie: Decodable, Hashable, Identifiable{
     let movieID: Int
     var id: Int { movieID }

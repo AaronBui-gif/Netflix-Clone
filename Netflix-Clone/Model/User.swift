@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: User
 struct User: Decodable{
     let uid, email, profileImageUrl: String
     

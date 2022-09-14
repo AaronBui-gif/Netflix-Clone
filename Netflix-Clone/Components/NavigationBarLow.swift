@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct NavigationBarLow: View {
+    
+    // MARK: BODY
+    @State var saveList: [SaveList] = []
     var body: some View {
-        
-        
         VStack{
             HStack(alignment: .bottom, spacing: 73) {
                 
-                // Home Button
+                // MARK: Home Button
                 NavigationLink{
-                    HomeView()
+                    HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                     .navigationBarTitleDisplayMode(.inline)} label: {
@@ -31,7 +32,7 @@ struct NavigationBarLow: View {
                         }
                     }
                 
-                // Comming Soon Button
+                // MARK: Comming Soon Button
                 
                 NavigationLink{
                     ComingSoonView()
@@ -51,7 +52,7 @@ struct NavigationBarLow: View {
                 }
             }
                 
-                // Downloads button
+                // MARK: Downloads button
                 NavigationLink{}
             label: {
                 VStack {
@@ -70,6 +71,7 @@ struct NavigationBarLow: View {
     }
 }
 
+// MARK: Preview
 struct NavigationBarLow_Previews: PreviewProvider {
     static var previews: some View {
         NavigationBarLow().preferredColorScheme(.dark)

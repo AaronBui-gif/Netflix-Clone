@@ -9,12 +9,14 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct NavigationBar: View {
+    
     // MARK: Properties
     @State var shouldShowLogOutOptions = false
     @State var shouldShowSearchView = false
+    @State var saveList: [SaveList] = []
     @ObservedObject private var vm = MainMessagesViewModel()
     
-    // MARK: Body
+    // MARK: BODY
     var body: some View {
         VStack{
             HStack(alignment: .center, spacing: 12) {
@@ -76,7 +78,7 @@ struct NavigationBar: View {
             HStack(alignment: .center, spacing: 70){
                 //TV SHOWS
                 NavigationLink{
-                    HomeView()
+                   HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
@@ -86,9 +88,9 @@ struct NavigationBar: View {
                             .fontWeight(.semibold)
                 }
                 
-                //MOVIES
+                // MARK: Movies HOMEVIEW
                 NavigationLink{
-                    HomeView()
+                    HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
@@ -98,7 +100,7 @@ struct NavigationBar: View {
                             .fontWeight(.semibold)
                 }
                 
-                //MY LIST
+                //MARK: MOVIE LIST
                 NavigationLink{
                     MovieList()
                         .navigationBarTitle("")
@@ -115,6 +117,7 @@ struct NavigationBar: View {
     }
 }
 
+// MARK: Preview
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         NavigationBar().preferredColorScheme(.dark)

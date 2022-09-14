@@ -10,16 +10,24 @@ import Firebase
 
 class MainMessagesViewModel: ObservableObject {
     
+    // MARK: Properties
     @Published var errorMessage = ""
     @Published var chatUser: User?
     @Published var isUserCurrentlyLoggedOut = false
-    @Published var savedLists: [Movie] = []
+    @Published var savedLists: [SaveList] = []
+   
     // MARK: Initialize
     init() {
         DispatchQueue.main.async {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
         }
         fetchCurrentUser()
+    }
+    
+    func printList(){
+        for list in savedLists {
+            print("\(list)")
+        }
     }
     
     // MARK: Fetch User
@@ -53,8 +61,9 @@ class MainMessagesViewModel: ObservableObject {
     func handleSignOut() {
             isUserCurrentlyLoggedOut.toggle()
             try? FirebaseManager.shared.auth.signOut()
-        }
+    }
     
+    //MARK: PUT API REQUEST
     func putData(movieID: Int, title: String) {
         guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/\(chatUser?.email ?? "")/\(movieID)") else {
             return
@@ -91,11 +100,14 @@ class MainMessagesViewModel: ObservableObject {
         }
         task.resume()
     }
-    // MARK: fetch api
+    
+    // MARK: FETCH API
     func fetch() {
+        self.fetchCurrentUser()
         print("Fetching")
         //guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/update/\(userName)/\(movieID)") else {
-        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/huepham1707") else {
+        let username = (self.chatUser?.email ?? "")
+        guard let url = URL(string: "https://backend-ios.herokuapp.com/saveList/userName/\(username)") else {
             return
         }
         
@@ -106,19 +118,33 @@ class MainMessagesViewModel: ObservableObject {
             
             // Convert to JSON
             do {
-                let savedLists = try JSONDecoder().decode([Movie].self, from: data)
+                print("Decoding")
+                let savedLists = try JSONDecoder().decode([SaveList].self, from: data)
                 DispatchQueue.main.async {
                     self?.savedLists = savedLists
                 }
-                print("SUCCESS")
+                print("SUCCESSs")
+                print("User: \(username)")
+                print(self?.chatUser?.email ?? "")
+                print(url)
+                print(String(describing: type(of: url)))
+                print("List")
+                self!.printList()
             }
             catch {
-                print("FAIL: \(error)")
+                print("FAILs: \(error)")
+                print("User: \(username)")
+                print(self?.chatUser?.email ?? "")
+                print((self?.chatUser?.email ?? "")!)
+                print(url)
+                print("List")
+                self!.printList()
             }
         }
         task.resume()
     }
     
+    // MARK: POST API REQUEST
     func makePostRequest(name: String, pass: String) {
         guard let url = URL(string: "https://backend-ios.herokuapp.com/user") else {
             return

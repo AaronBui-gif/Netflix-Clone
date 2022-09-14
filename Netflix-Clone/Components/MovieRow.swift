@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+// MARK: Displaying Movie Card
 struct MovieRow: View {
     
+    // MARK: Properties
     var movie: Movie
     
+    // MARK: BODY
     var body: some View {
         //Display image for movie
         movie.image
@@ -21,6 +24,7 @@ struct MovieRow: View {
     }
 }
 
+// MARK: Preview
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
