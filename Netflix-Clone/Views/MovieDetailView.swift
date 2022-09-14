@@ -29,8 +29,9 @@ struct MovieDetailView: View {
                 VStack(alignment: .leading, spacing: 16){
                     VideoView(videoID: movie.youtubeID)
                         .frame(width: 370, height: 200, alignment: .center)
+                     
+                    // Save to List button SAVE TO LIST BUTTON
                     
-                    // MARK: Save to List button SAVE TO LIST BUTTON
                     HStack (alignment: .center, spacing: 28) {
                         VStack (spacing: 4){
                             
@@ -130,8 +131,9 @@ struct MovieDetailView: View {
                                 VStack{
                                     Image(movie.castList[index].castImage)
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 120, height: 130, alignment: .center)
+                                        .aspectRatio(2/3,contentMode: .fit)
+//                                        .frame(width: 120, height: 130, alignment: .center)
+                                        .frame(height: 130, alignment: .center)
                                     Text("\(movie.castList[index].castName)")
                                     
                                 }

@@ -89,6 +89,7 @@ struct MainPageView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .bold))
                             .opacity(0.8)
+
                     }
                     .frame(width: 340, height: 45, alignment: .center)
                     .background(Color("red").opacity(0.9))
