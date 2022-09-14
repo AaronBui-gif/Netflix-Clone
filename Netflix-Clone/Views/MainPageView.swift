@@ -84,7 +84,7 @@ struct MainPageView: View {
 
                 // MARK: Footer
                 NavigationLink{
-                    SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())
+                    LoginView(didCompleteLoginProcess: {}, isLoginMode: false)
                 } label: {
                     Text("Get Started")
                         .foregroundColor(.white)
