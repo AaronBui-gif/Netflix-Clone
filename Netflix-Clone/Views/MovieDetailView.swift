@@ -27,7 +27,7 @@ struct MovieDetailView: View {
                 VStack(alignment: .leading, spacing: 16){
                     VideoView(videoID: movie.youtubeID)
                         .frame(width: 370, height: 200, alignment: .center)
-                    
+                     
                     // Save to List button SAVE TO LIST BUTTON
                     HStack (alignment: .center, spacing: 28) {
                         VStack (spacing: 4){

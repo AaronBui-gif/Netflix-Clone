@@ -35,6 +35,7 @@ struct LoginView: View {
     @State var changeView = false
     @State var shouldShowImagePicker = false
     
+    
     // MARK: Image
     @State var image: UIImage?
     
@@ -70,112 +71,235 @@ struct LoginView: View {
                 }
                 
                 
-        
-            VStack (spacing: 16){
-                
-//                // MARK: - Choosing Login or Sign up
-//                Picker(selection: $isLoginMode, label: Text("Picker here")) {
-//                    Text("Login")
-//                        .tag(true)
-//                    Text("Create Account")
-//                        .tag(false)
-//                }.pickerStyle(SegmentedPickerStyle())
-                
-                // MARK: - User Image
-                if !isLoginMode {
-                    Button {
-                        shouldShowImagePicker.toggle()
-                    } label: {
-                        VStack {
-                            if let image = self.image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 128, height: 128)
-                                    .cornerRadius(64)
-                            } else {
-                                Image(systemName: "person.fill")
-                                    .font(.system(size: 64))
-                                    .padding()
-                                    .foregroundColor(Color(.label))
+                if (isLoginMode){
+                    VStack (spacing: 16){
+                        
+        //                // MARK: - Choosing Login or Sign up
+        //                Picker(selection: $isLoginMode, label: Text("Picker here")) {
+        //                    Text("Login")
+        //                        .tag(true)
+        //                    Text("Create Account")
+        //                        .tag(false)
+        //                }.pickerStyle(SegmentedPickerStyle())
+                        
+                        // MARK: - User Image
+                        if !isLoginMode {
+                            Button {
+                                shouldShowImagePicker.toggle()
+                            } label: {
+                                VStack {
+                                    if let image = self.image {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 128, height: 128)
+                                            .cornerRadius(64)
+                                    } else {
+                                        Image(systemName: "person.fill")
+                                            .font(.system(size: 64))
+                                            .padding()
+                                            .foregroundColor(Color(.label))
+                                    }
+                                }
+                                .overlay(RoundedRectangle(cornerRadius: 64)
+                                    .stroke(Color.black, lineWidth: 3)
+                                )
                             }
                         }
-                        .overlay(RoundedRectangle(cornerRadius: 64)
-                            .stroke(Color.black, lineWidth: 3)
-                        )
-                    }
-                }
-                
-                Text("Login")
-                    .foregroundColor(.white)
-                    .font(.system(size: 42))
-                    .fontWeight(.bold)
-                    .padding(.bottom, 10)
-                
-                // MARK: - Text Field for email and password
-                VStack (spacing: 18)  {
-                    TextField("Email", text: $email)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .foregroundColor(.black)
-                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
                         
-                      
-                    
-                    SecureField("Password", text: $password)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .foregroundColor(.black)
-                        .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
-                       
-                }
-                .padding(.bottom, 10)
-                .padding(.top, 20)
-//                .padding(12)
-//                .background(Color.white)
-                
-                // MARK: - Submit button
-                Button {
-                    handleAction()
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text(isLoginMode ? "Enjoy your movie night!" : "Create Account")
+                        Text("Login")
                             .foregroundColor(.white)
-                            .padding(.vertical, 16)
-                            .font(.system(size: 16, weight: .bold))
-                        Spacer()
-                    }
-                    
-                    .background(Color("black"))
-                    .border(.white, width:4)
-                    .cornerRadius(2)
-                    .opacity(0.85)
-//                    .padding(.horizontal, 40)
-                }
-                
-                HStack {
-                    Text("New to Netflix?")
-                    //MY LIST
-                    NavigationLink{
-                        SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                            .navigationBarTitleDisplayMode(.inline)
-                    } label: {
-                            Text ("Sign Up")
-                                .foregroundColor(Color.white)
+                            .font(.system(size: 42))
+                            .fontWeight(.bold)
+                            .padding(.bottom, 10)
+                        
+                        // MARK: - Text Field for email and password
+                        VStack (spacing: 18)  {
+                            TextField("Email", text: $email)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .keyboardType(.emailAddress)
+                                .autocapitalization(.none)
+                                .foregroundColor(.black)
+                                .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
+                                
+                              
+                            
+                            SecureField("Password", text: $password)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .foregroundColor(.black)
+                                .background(RoundedRectangle(cornerRadius: 4).fill(Color.white))
+                               
+                        }
+                        .padding(.bottom, 10)
+                        .padding(.top, 20)
+        //                .padding(12)
+        //                .background(Color.white)
+                        
+                        // MARK: - Submit button
+                        Button {
+                            handleAction()
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text(isLoginMode ? "Enjoy your movie night!" : "Create Account")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 16)
+                                    .font(.system(size: 16, weight: .bold))
+                                Spacer()
+                            }
+                            
+                            .background(Color("black"))
+                            .border(.white, width:4)
+                            .cornerRadius(2)
+                            .opacity(0.85)
+        //                    .padding(.horizontal, 40)
+                        }
+                        
+                        HStack {
+                            Text("New to Netflix?")
+                            Text("Sign Up")
                                 .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    self.isLoginMode = false
+                                }
+                            
+//                            NavigationLink{
+//                                SignUpView(didCompleteLoginProcess: {}, mainMessageViewModel: MainMessagesViewModel())
+//                                    .navigationBarTitle("")
+//                                    .navigationBarHidden(true)
+//                                    .navigationBarTitleDisplayMode(.inline)
+//                            } label: {
+//                                    Text ("Sign Up")
+//                                        .foregroundColor(Color.white)
+//                                        .fontWeight(.semibold)
+//                            }
+                        }
+                        Text(self.loginStatusMessage)
+                            .foregroundColor(.red)
+                        
+        //                Spacer()
                     }
+                        .padding(.horizontal, 72)
+                }else{
+                    VStack (spacing: 16){
+                        
+                    
+                        // MARK: - User Image
+                        Button {
+                            shouldShowImagePicker.toggle()
+                        } label: {
+                            VStack {
+                                if let image = self.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 128, height: 128)
+                                        .cornerRadius(64)
+                                } else {
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: 36))
+                                        .padding()
+                                        .foregroundColor(Color(.white))
+                                }
+                            }
+                            .overlay(RoundedRectangle(cornerRadius: 64)
+                                .stroke(Color.white, lineWidth: 3)
+                            )
+                        }
+
+                        
+                        //Title
+                        Text("Sign Up")
+                            .font(.system(size: 42))
+                            .fontWeight(.bold)
+                            .padding(.bottom, 10)
+                        
+                        //MARK: - Text Field for email and password
+                        VStack (spacing: 18)  {
+                            Text("Email")
+                                .font(.system(size: 24))
+                                .fontWeight(.bold)
+                                .padding(.trailing, 265.0)
+                            
+                            TextField("Email", text: $email)
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 20)
+                                .keyboardType(.emailAddress)
+                                .autocapitalization(.none)
+                                .foregroundColor(.black)
+                                .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                                .padding(.bottom, 20)
+                            
+                            Text("Password")
+                                .font(.system(size: 24))
+                                .fontWeight(.bold)
+                                .padding(.trailing, 215.0)
+                            
+                            SecureField("Password", text: $password)
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 20)
+                                .foregroundColor(.black)
+                                .background(RoundedRectangle(cornerRadius: 2).fill(Color.white))
+                                .padding(.bottom, 10)
+                               
+                        }
+                        .padding(.bottom, 20)
+                        .padding(.top, 20)
+                        
+                        // MARK: - Submit button
+                        Button {
+                            handleAction()
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text(isLoginMode ? "Enjoy your movie night!" : "Create Account")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 16)
+                                    .font(.system(size: 16, weight: .bold))
+                                Spacer()
+                            }
+                            
+                            .background(Color("black"))
+                            .border(.white, width:4)
+                            .cornerRadius(2)
+                            .opacity(0.85)
+
+                        }
+                        
+                        HStack {
+                            Text("Already a member?")
+                            
+                            // MARK: Login
+                            
+                            Text("Login")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    self.isLoginMode = true
+                                }
+//                            NavigationLink{
+//                                LoginView(didCompleteLoginProcess: {})
+//                                .navigationBarTitle("")
+//                                .navigationBarHidden(true)
+//                                .navigationBarTitleDisplayMode(.inline)
+//                            } label: {
+//                                Text("Login")
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.white)
+//                                }
+                                
+                        }
+                       
+                        
+                        Text(self.loginStatusMessage)
+                            .foregroundColor(.red)
+                    }
+                        .padding(.horizontal, 80)
                 }
-                Text(self.loginStatusMessage)
-                    .foregroundColor(.red)
-                
-//                Spacer()
-            }
-                .padding(.horizontal, 72)
+            
                 
             }
             .navigationBarBackButtonHidden(true)
@@ -312,6 +436,8 @@ struct LoginView: View {
                 self.didCompleteLoginProcess()
             }
     }
+    
+    
 }
                 
 struct CustomBackButtonView: View {
