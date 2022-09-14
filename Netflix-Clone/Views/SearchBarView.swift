@@ -13,71 +13,92 @@ struct SearchBarView: View {
     @State var currentIndex: Int = 0
     @State var searchText = ""
     @State var isSearching = false
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     // MARK: BODY
     var body: some View {
-        NavigationView{
-            ZStack{
-                Color.black.ignoresSafeArea()
-                VStack(spacing: 15) {
-                    
-                    // MARK: Navigation Bar
-                    NavigationBar()
-                        .offset(y:13)
-                    
-                    // MARK: Main Content
-                    ScrollView {
-                        VStack{
-                            ZStack(alignment: .leading) {
-                                VStack(alignment: .leading) {
-                                    // MARK: Search Bar
-                                    SearchBar(searchText: $searchText, isSearching: $isSearching)
-                                }
+        ZStack{
+            Color.black.ignoresSafeArea()
+            VStack(spacing: 15) {
+                
+                // MARK: Main Content
+                ScrollView {
+                    VStack{
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                // MARK: Search Bar
+                                SearchBar(searchText: $searchText, isSearching: $isSearching)
                             }
-                            
-                            // MARK: LIST OF MOVIES
-                            ZStack(alignment: .leading) {
-                                VStack(alignment: .leading) {
-                                    
-                                    // MARK: Looping through array of movie
-                                    ForEach(movies.filter({ "\($0)".contains(searchText) || searchText.isEmpty }), id: \.self) { movie in
-                                        NavigationLink{ MovieDetailView(movie: movie)} label: {
-                                            // MARK: Display image and name of movie
-                                            HStack {
-                                                Image(movie.imageName)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: 200)
-                                                    .cornerRadius(12)
-                                                Text(movie.title)
-                                                    .foregroundColor(.white)
-                                                Spacer()
-                                            }.padding()
-                                        }
-                                        Divider()
-                                            .background(Color(.systemGray4))
-                                            .padding(.leading)
+                        }
+                        
+                        // MARK: LIST OF MOVIES
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                
+                                // MARK: Looping through array of movie
+                                ForEach(movies.filter({ "\($0)".contains(searchText) || searchText.isEmpty }), id: \.self) { movie in
+                                    NavigationLink{ MovieDetailView(movie: movie)} label: {
+                                        // MARK: Display image and name of movie
+                                        HStack {
+                                            Image(movie.imageName)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 200)
+                                                .cornerRadius(12)
+                                            Text(movie.title)
+                                                .foregroundColor(.white)
+                                            Spacer()
+                                        }.padding()
                                     }
+                                    Divider()
+                                        .background(Color(.systemGray4))
+                                        .padding(.leading)
                                 }
                             }
                         }
                     }
-                    .frame(minHeight:600, maxHeight: 7050)
-                    .offset(y: 10)
-                    
-                    // MARK: NAVIGATIONBARLOW
-                    NavigationBarLow()
-                        .offset(y:17)
-                    Image (systemName: "arrow.down.circle")
-                    
                 }
+                .frame(minHeight:600, maxHeight: 7050)
+                .offset(y: 10)
                 
-                .frame(maxHeight: .infinity, alignment: .top)
+                // MARK: NAVIGATIONBARLOW
+                NavigationBarLow()
+                    .offset(y:17)
+                Image (systemName: "arrow.down.circle")
                 
-            }.navigationBarTitle("")
-                .navigationBarHidden(false)
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            
+            .frame(maxHeight: .infinity, alignment: .top)
+            
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading:
+                HStack(alignment: .center){
+                    //BACK BUTTON
+                    CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
+                    
+                    Spacer()
+                    
+                    //IMAGE NETFLIX
+                    Image("MainPage-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 124, height: 0, alignment: .center)
+                    .ignoresSafeArea(.all)
+                    .padding(.leading, -56)
+                    
+                    Spacer()
+
+                }
+                .frame(width: 390, height: 60, alignment: .center)
+                .background(LinearGradient(
+                    gradient: Gradient(stops: [
+                        .init(color: Color.black, location: 0),
+                        .init(color: Color.black.opacity(1), location: 1)]),
+                        startPoint: .top,
+                        endPoint: .bottom).ignoresSafeArea(.all))
+        )
+        .foregroundColor(.white)
     }
 }
 
