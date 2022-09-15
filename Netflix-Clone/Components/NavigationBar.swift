@@ -117,12 +117,12 @@ struct NavigationBar: View {
                 
                 //MARK: MOVIE LIST
                 NavigationLink{
-                    SaveListView()
+                   MovieList()
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
                 } label: {
-                        Text ("My List")
+                        Text ("Movie List")
                             .foregroundColor(Color.white)
                             .fontWeight(.semibold)
                 }

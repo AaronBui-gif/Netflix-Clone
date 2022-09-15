@@ -38,7 +38,7 @@ struct MovieDetailView: View {
     // MARK: BODY
     var body: some View {
         
-        ZStack (alignment: .top) {
+        ZStack  {
             Color.black.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: 16){
@@ -210,9 +210,6 @@ struct MovieDetailView: View {
                             ForEach(movies) { movie in
                                 NavigationLink{
                                     MovieDetailView(movie: movie)
-                                        .navigationBarTitle("")
-                                        .navigationBarHidden(true)
-                                        .navigationBarTitleDisplayMode(.inline)
                                 } label: {
                                     HStack(alignment: .center){
                                         MovieRow(movie: movie)
@@ -223,38 +220,10 @@ struct MovieDetailView: View {
                     }
                     
                 }
-                .navigationBarBackButtonHidden(true)
-                .navigationBarItems(
-                    leading:
-                        HStack(alignment: .center){
-                            //MARK: CUSTOM BACK BUTTON NAVIGATION BAR
-                            CustomBackButtonView(action: {presentationMode.wrappedValue.dismiss()})
-                            
-                            Spacer()
-                            
-                            //IMAGE NETFLIX
-                            Image("MainPage-logo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 124, height: 0, alignment: .center)
-                            .ignoresSafeArea(.all)
-                            .padding(.leading, -56)
-                            
-                            Spacer()
-
-                        }
-                        .frame(width: 390, height: 60, alignment: .center)
-                        .background(LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color.black, location: 0),
-                                .init(color: Color.black.opacity(1), location: 1)]),
-                                startPoint: .top,
-                                endPoint: .bottom).ignoresSafeArea(.all))
-                )
-                .foregroundColor(.white)
-                .foregroundColor(.white)
             .padding(.horizontal, 16)
             }
+            .navigationBarTitle(movie.title)
+                .foregroundColor(.white)
 
             
         }
