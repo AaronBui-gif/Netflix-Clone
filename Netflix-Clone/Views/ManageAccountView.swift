@@ -178,7 +178,7 @@ struct ManageAccountView: View {
                 }
                 
                 self.saveStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url?.absoluteString)
+                //print(url?.absoluteString)
                 
                 guard let url = url else {return }
                 self.saveInfo(imageProfileUrl: url)
@@ -209,7 +209,7 @@ struct ManageAccountView: View {
     
     // MARK: Delete User Function
     private func deleteUser() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        //guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         FirebaseManager.shared.auth.currentUser?.delete() { err in
                 if let err = err {
                     print(err)

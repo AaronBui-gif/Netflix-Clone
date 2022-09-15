@@ -62,9 +62,9 @@ struct SaveListView: View {
                     } // Scroll View
                     .frame(minHeight:600, maxHeight: 7000)
                     
-                    // MARK: Navigation Bar Low
-                    NavigationBarLow()
-                        .offset(y:17)
+//                    // MARK: Navigation Bar Low
+//                    NavigationBarLow()
+//                        .offset(y:17)
                     Image (systemName: "arrow.down.circle")
                     
                 }

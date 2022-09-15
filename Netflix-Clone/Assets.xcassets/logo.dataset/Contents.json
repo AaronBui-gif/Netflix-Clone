@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "logo.gif",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

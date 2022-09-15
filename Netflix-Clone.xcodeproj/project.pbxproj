@@ -37,7 +37,7 @@
 		75B18A5328BCE343000EBAB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B18A5228BCE343000EBAB9 /* Preview Assets.xcassets */; };
 		75B18A6228BCEBAF000EBAB9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B18A6128BCEBAF000EBAB9 /* LoginView.swift */; };
 		75B4F9F028BE3C8F00494DD4 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */; };
-		75B9C9E028C8F84400245924 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 75B9C9DF28C8F84400245924 /* BottomSheet */; };
+		75BE663B28D29940007A7A22 /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 75BE663A28D29940007A7A22 /* logo.gif */; };
 		75D41CB328D072B20060891A /* SaveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D41CB228D072B10060891A /* SaveListView.swift */; };
 		75D41CB728D07D0A0060891A /* SaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D41CB628D07D0A0060891A /* SaveList.swift */; };
 		75DAC65F28C87618005F51B2 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAC65E28C87618005F51B2 /* ComingSoonView.swift */; };
@@ -78,6 +78,8 @@
 		75B18A5228BCE343000EBAB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75B18A6128BCEBAF000EBAB9 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B4F9EF28BE3C8F00494DD4 /* MovieList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
+		75BE663A28D29940007A7A22 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
+		75BE663C28D29CEB007A7A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75D41CB228D072B10060891A /* SaveListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveListView.swift; sourceTree = "<group>"; };
 		75D41CB628D07D0A0060891A /* SaveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveList.swift; sourceTree = "<group>"; };
 		75DAC65E28C87618005F51B2 /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
@@ -95,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75B9C9E028C8F84400245924 /* BottomSheet in Frameworks */,
 				7596C30328BD06C200D559BE /* SDWebImageSwiftUI in Frameworks */,
 				7596C2F728BCFB1E00D559BE /* FirebaseAuth in Frameworks */,
 				7596C2F928BCFB1E00D559BE /* FirebaseFirestore in Frameworks */,
@@ -159,8 +160,10 @@
 		75B18A4A28BCE340000EBAB9 /* Netflix-Clone */ = {
 			isa = PBXGroup;
 			children = (
-				75DAC66728C87AE6005F51B2 /* Services */,
+				75BE663C28D29CEB007A7A22 /* Info.plist */,
 				7596C2F328BCF1EF00D559BE /* GoogleService-Info.plist */,
+				75BE663D28D2A226007A7A22 /* Resources */,
+				75DAC66728C87AE6005F51B2 /* Services */,
 				7596C30928BD1C1000D559BE /* ViewModel */,
 				7596C30428BD187500D559BE /* Model */,
 				7596C2F028BCEED000D559BE /* Components */,
@@ -202,6 +205,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		75BE663D28D2A226007A7A22 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				75BE663A28D29940007A7A22 /* logo.gif */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		75DAC66728C87AE6005F51B2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,7 +245,6 @@
 				7596C2F828BCFB1E00D559BE /* FirebaseFirestore */,
 				7596C2FA28BCFB1E00D559BE /* FirebaseStorage */,
 				7596C30228BD06C200D559BE /* SDWebImageSwiftUI */,
-				75B9C9DF28C8F84400245924 /* BottomSheet */,
 			);
 			productName = "Netflix-Clone";
 			productReference = 75B18A4828BCE340000EBAB9 /* Netflix-Clone.app */;
@@ -267,7 +277,6 @@
 			packageReferences = (
 				7596C2F528BCFB1E00D559BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7596C30128BD06C200D559BE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				75B9C9DE28C8F84400245924 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 75B18A4928BCE340000EBAB9 /* Products */;
 			projectDirPath = "";
@@ -284,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75B18A5328BCE343000EBAB9 /* Preview Assets.xcassets in Resources */,
+				75BE663B28D29940007A7A22 /* logo.gif in Resources */,
 				75B18A5028BCE343000EBAB9 /* Assets.xcassets in Resources */,
 				7596C2F428BCF1EF00D559BE /* GoogleService-Info.plist in Resources */,
 			);
@@ -460,9 +470,9 @@
 				DEVELOPMENT_TEAM = 9WXG65J3R6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Netflix-Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -489,9 +499,9 @@
 				DEVELOPMENT_TEAM = 9WXG65J3R6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Netflix-Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,14 +557,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		75B9C9DE28C8F84400245924 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamfootdev/BottomSheet";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -577,11 +579,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7596C30128BD06C200D559BE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		75B9C9DF28C8F84400245924 /* BottomSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 75B9C9DE28C8F84400245924 /* XCRemoteSwiftPackageReference "BottomSheet" */;
-			productName = BottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

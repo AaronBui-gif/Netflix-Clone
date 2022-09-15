@@ -18,6 +18,7 @@ struct HomeView: View {
     @Binding var saveList: [SaveList]
     // MARK: BODY
     var body: some View {
+        
         //MARK: - Navigation View
         NavigationView{
             ZStack{
@@ -35,8 +36,7 @@ struct HomeView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 390, height: 552)
-                                //                                        .scaledToFill()
-                                //                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+                             
                                     .opacity(0.65)
                                     .ignoresSafeArea(.all)
                                 
@@ -195,11 +195,11 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
-                                        ForEach(horrorMovies, id:\.self) { romance in
+                                        ForEach(horrorMovies, id:\.self) { horror in
                                             NavigationLink{
-                                                MovieDetailView(movie: romance)
+                                                MovieDetailView(movie: horror)
                                             } label: {
-                                                MovieRow(movie: romance)
+                                                MovieRow(movie: horror)
                                             }
                                         }
                                     }
@@ -214,11 +214,11 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
-                                        ForEach(actionMovies, id:\.self) { romance in
+                                        ForEach(actionMovies, id:\.self) { action in
                                             NavigationLink{
-                                                MovieDetailView(movie: romance)
+                                                MovieDetailView(movie: action)
                                             } label: {
-                                                MovieRow(movie: romance)
+                                                MovieRow(movie: action)
                                             }
                                         }
                                     }
@@ -233,11 +233,11 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
-                                        ForEach(thrillerMovies, id:\.self) { romance in
+                                        ForEach(thrillerMovies, id:\.self) { thriller in
                                             NavigationLink{
-                                                MovieDetailView(movie: romance)
+                                                MovieDetailView(movie: thriller)
                                             } label: {
-                                                MovieRow(movie: romance)
+                                                MovieRow(movie: thriller)
                                             }
                                         }
                                     }
@@ -253,11 +253,11 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
-                                        ForEach(comedyMovies, id:\.self) { romance in
+                                        ForEach(comedyMovies, id:\.self) { comedy in
                                             NavigationLink{
-                                                MovieDetailView(movie: romance)
+                                                MovieDetailView(movie: comedy)
                                             } label: {
-                                                MovieRow(movie: romance)
+                                                MovieRow(movie: comedy)
                                             }
                                         }
                                     }
@@ -267,16 +267,16 @@ struct HomeView: View {
                         }.offset(y:-20)
                         
                         // MARK: Sci-Fic movies
-                        MovieCarouselView(secionTitle: "Comedy")
+                        MovieCarouselView(secionTitle: "Science Fiction")
                         ZStack(alignment: .leading) {
                             VStack(alignment: .leading) {
                                 ScrollView(.horizontal) {
                                     HStack(spacing: 12) {
-                                        ForEach(scificMovies, id:\.self) { romance in
+                                        ForEach(scificMovies, id:\.self) { scific in
                                             NavigationLink{
-                                                MovieDetailView(movie: romance)
+                                                MovieDetailView(movie: scific)
                                             } label: {
-                                                MovieRow(movie: romance)
+                                                MovieRow(movie: scific)
                                             }
                                         }
                                     }
@@ -285,9 +285,12 @@ struct HomeView: View {
                             .padding(8)
                         }.offset(y:-20)
                     }
+                   
                     
-                }
-            .ignoresSafeArea()
+                }//ScrolView
+                .frame(minHeight:600, maxHeight: 7000)
+                
+                   
                 // Main content ends
             }//ZStack
             .navigationBarTitle("", displayMode: .inline)

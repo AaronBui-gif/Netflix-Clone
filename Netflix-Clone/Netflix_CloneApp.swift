@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct Netflix_CloneApp: App {
+    @State var saveList: [SaveList] = []
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
-            //HomeView()
+//HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList)
         }
     }
 }

@@ -382,7 +382,7 @@ struct LoginView: View {
             self.loginStatusMessage = "Successsfully logged in as user: \(result?.user.uid  ?? "")"
             mainMessageViewModel.fetch()
             print("Email: \(email)")
-            let url = URL(string: "https://backend-ios.herokuapp.com/saveList/userName/\(email)")
+            //let url = URL(string: "https://backend-ios.herokuapp.com/saveList/userName/\(email)")
             @State var saveList: [SaveList] = loads(inputJsonURL: "https://backend-ios.herokuapp.com/saveList/userName/\(email)")
             print("List1")
             for list in saveList {
