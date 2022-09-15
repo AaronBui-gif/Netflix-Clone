@@ -1,9 +1,24 @@
-//
-//  FeatureItemView.swift
-//  group
-//
-//  Created by minh on 9/1/22.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 3
+ Author:
+    Bui Thanh Huy
+    Hoang Minh Quan
+    Nguyen Quoc Minh
+    Pham Huynh Ngoc Hue
+ ID:
+    s3740934
+    s3754450
+    s3758994
+    s3702554
+ Created  date: 29/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement:
+ 
+ - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
+ */
 
 import SwiftUI
 
@@ -11,21 +26,9 @@ struct FeaturedItemView: View {
     var image:String = "MainPage-background1"
     
     var body: some View {
-//        ZStack{
             Image(image)
                 .resizable()
                 .frame(maxWidth: 390)
-
-            
-//            LinearGradient(
-//                gradient: Gradient(stops: [
-//                    .init(color: Color.black, location: 0),
-//                    .init(color: Color.black.opacity(0.25), location: 1)]),
-//                    startPoint: .bottom,
-//                    endPoint: .top)
-//        }
-//        .ignoresSafeArea()
-
     }
 }
 
