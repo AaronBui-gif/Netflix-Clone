@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import BottomSheet
 
 struct MovieList: View {
     
