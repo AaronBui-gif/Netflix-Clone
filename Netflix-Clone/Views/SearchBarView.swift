@@ -110,7 +110,7 @@ struct SearchBarView: View {
                         startPoint: .top,
                         endPoint: .bottom).ignoresSafeArea(.all))
         )
-        .foregroundColor(.white)
+        .foregroundColor(.black)
     }
 }
 

@@ -22,7 +22,6 @@
 
 import SwiftUI
 import Foundation
-import BottomSheet
 
 struct HomeView: View {
     
