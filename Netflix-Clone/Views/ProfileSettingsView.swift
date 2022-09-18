@@ -3,14 +3,23 @@
  Course: COSC2659 iOS Development
  Semester: 2022B
  Assessment: Assignment 3
- Author: Bui Thanh Huy
- ID: s3740934
+ Author:
+    Bui Thanh Huy
+    Hoang Minh Quan
+    Nguyen Quoc Minh
+    Pham Huynh Ngoc Hue
+ ID:
+    s3740934
+    s3754450
+    s3758994
+    s3702554
  Created  date: 29/08/2022
  Last modified: 29/08/2022
  Acknowledgement:
  
  - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
  */
+
 import SwiftUI
 import SDWebImageSwiftUI
 
@@ -20,30 +29,11 @@ struct ProfileSettingsView: View {
     @State var shouldShowLogOutOptions = false
     @State var email = ""
     @ObservedObject private var vm = MainMessagesViewModel()
+    
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     
-    
     // MARK: Custom Navigation Bar
-    private var customNavBar: some View {
-        
-        HStack(spacing: 16) {
-            NavigationLink{ Home().navigationBarTitle("")
-                    .navigationBarHidden(true)
-                .navigationBarTitleDisplayMode(.inline)} label: {
-                    
-                    HStack{
-                        Image(systemName: "arrow.backward")
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.white)
-                    }
-                }
-            Text("Profiles & Other Accounts")
-                .foregroundColor(.white)
-        } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-    }
-    
-    // MARL: Custom Navigation Bar
     var BackButton: some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {
@@ -57,23 +47,21 @@ struct ProfileSettingsView: View {
     }
     }
     
+    // MARK: BODY
     var body: some View {
         NavigationView{
             ZStack{
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 30) {
                     
-                    customNavBar
+                    // MARK: User Profile Picture
                     WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                         .resizable()
                         .scaledToFill()
                         .frame(width: 100, height: 100)
                         .clipped()
                         .cornerRadius(20)
-                    
-                    
-                    
-                    
+                     
                     // MARK: Email
                     let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
                     
@@ -96,7 +84,7 @@ struct ProfileSettingsView: View {
                         }
                     
                     // MARK: Movie List
-                    NavigationLink{ MovieList().navigationBarTitle("")
+                    NavigationLink{  SaveListView().navigationBarTitle("")
                             .navigationBarHidden(true)
                         .navigationBarTitleDisplayMode(.inline)} label: {
                             HStack {
@@ -109,7 +97,7 @@ struct ProfileSettingsView: View {
                         }
                     
                     // MARK: Setting
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Setting")
                                 .font(.system(size: 24, weight: .bold))
@@ -118,7 +106,7 @@ struct ProfileSettingsView: View {
                     }
                     
                     // MARK: Account
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Account")
                                 .font(.system(size: 24, weight: .bold))
@@ -127,7 +115,7 @@ struct ProfileSettingsView: View {
                     }
                     
                     // MARK: Help
-                    NavigationLink{ Text("123")} label: {
+                    NavigationLink{ } label: {
                         HStack {
                             Text("Help")
                                 .font(.system(size: 24, weight: .bold))
@@ -153,8 +141,10 @@ struct ProfileSettingsView: View {
                             .cancel()
                         ])
                     }
+                
+                // MARK: User Log Out Sheet
                     .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
-                        LoginView(didCompleteLoginProcess: {
+                        LoginView(mainMessageViewModel: MainMessagesViewModel(), didCompleteLoginProcess: {
                             self.vm.isUserCurrentlyLoggedOut = false
                             self.vm.fetchCurrentUser()
                         })
@@ -164,10 +154,12 @@ struct ProfileSettingsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: BackButton)
         }
     }
 }
 
+// MARK: Preview
 struct ProfileSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSettingsView()

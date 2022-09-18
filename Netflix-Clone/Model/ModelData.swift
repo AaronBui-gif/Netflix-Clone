@@ -1,43 +1,66 @@
-//
-//  ModelData.swift
-//  Rmit
-//
-//  Created by Huy Bui Thanh on 16/07/2022.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 3
+ Author:
+    Bui Thanh Huy
+    Hoang Minh Quan
+    Nguyen Quoc Minh
+    Pham Huynh Ngoc Hue
+ ID:
+    s3740934
+    s3754450
+    s3758994
+    s3702554
+ Created  date: 29/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement:
+ 
+ - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
+ */
 
 import Foundation
+import SwiftUI
 
-// Initialize here
+// MARK: Load JSON API to array
+var movies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie?fbclid=IwAR2OetUECYxuzW7gBPspT9H8XWaoNa4kwhToxcb4g6Er3S31nTNcH8JJJ0s")
+var popularMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/popularMovies")
+var romanceMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Romance")
+var horrorMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Horror")
+var actionMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Action")
+var thrillerMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Thriller")
+var comedyMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Comedy")
+var scificMovies: [Movie] = load(inputJsonURL: "https://backend-ios.herokuapp.com/movie/genre/Sci-Fic")
 
-// Replace with`Initialize here` Comment above
-var movies: [Movie] = load("movies.json")
-var populars: [Movie] = load("populars.json")
-var asias: [Movie] = load("asias.json")
-var tops: [Movie] = load("tops.json")
-var comings: [Movie] = load("comingsoon.json")
-//var previewVideo: Video = load("videoData.json")
-var users: [User] = load("users.json")
-var myList: [Movie] = []
-var downloadList: [Movie] = []
+// MARK: Function load API
+func load(inputJsonURL: String) -> [Movie] {
+    if let url = URL(string: inputJsonURL) {
+        if let data = try? Data(contentsOf: url) {
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode([Movie].self, from: data)
+                return decoded
+            } catch let error {
+                fatalError("Failed to decode JSON: \(error)")
+            }
+        }
+    }
+    return [] as [Movie]
+}
 
-func load<T: Decodable>(_ filename: String) -> T {
-    let data: Data
-    
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-    else {
-        fatalError("Couldn't find \(filename) in main bundle.")
+// MARK: Function load API
+func loads(inputJsonURL: String) -> [SaveList] {
+    if let url = URL(string: inputJsonURL) {
+        if let data = try? Data(contentsOf: url) {
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode([SaveList].self, from: data)
+                return decoded
+            } catch let error {
+                fatalError("Failed to decode JSON: \(error)")
+            }
+        }
     }
-    
-    do {
-        data = try Data(contentsOf: file)
-    } catch {
-        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
-    }
-    
-    do {
-        let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: data)
-    } catch {
-        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
-    }
+    return [] as [SaveList]
 }

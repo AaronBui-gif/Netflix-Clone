@@ -3,14 +3,23 @@
  Course: COSC2659 iOS Development
  Semester: 2022B
  Assessment: Assignment 3
- Author: Bui Thanh Huy
- ID: s3740934
+ Author:
+    Bui Thanh Huy
+    Hoang Minh Quan
+    Nguyen Quoc Minh
+    Pham Huynh Ngoc Hue
+ ID:
+    s3740934
+    s3754450
+    s3758994
+    s3702554
  Created  date: 29/08/2022
  Last modified: 29/08/2022
  Acknowledgement:
  
  - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
  */
+
 import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseFirestore
@@ -23,6 +32,7 @@ struct ManageAccountView: View {
     @State var newEmail = ""
     @State var saveStatusMessage = ""
     @State var shouldShowImagePicker = false
+    @State var saveList: [SaveList] = []
     // MARK: Image
     @State var image: UIImage?
     @ObservedObject private var vm = MainMessagesViewModel()
@@ -31,48 +41,28 @@ struct ManageAccountView: View {
     @Environment(\.presentationMode) var presentationMode:
     Binding <PresentationMode>
     
+    // MARL: Custom Navigation Bar
+    var BackButton: some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack{
+            Image(systemName: "arrow.backward")
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            Text("Manage Accounts")
+                .foregroundColor(.white)
+        }
+    }
+    }
+        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     
-       // MARK: Custom Navigation Bar
-       private var customNavBar: some View {
-           
-           HStack(spacing: 16) {
-               NavigationLink{ ProfileSettingsView().navigationBarTitle("")
-                       .navigationBarHidden(true)
-                   .navigationBarTitleDisplayMode(.inline)} label: {
-               
-                  HStack{
-                      Image(systemName: "arrow.backward")
-                          .aspectRatio(contentMode: .fit)
-                          .foregroundColor(.white)
-                  }
-              }
-               Text("Manage Accounts")
-                   .foregroundColor(.white)
-               Spacer().frame(width:100)
-               
-               // MARK: - Save button
-               Button {
-                   persistImageToStorage()
-               } label: {
-                   HStack {
-                       Text("Save")
-                           .foregroundColor(.green)
-                           .font(.system(size: 14, weight: .semibold))
-                       
-                   }
-               }
-           } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-       }
-           
+    
     // MARK: Body
     var body: some View {
         NavigationView{
             ZStack{
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 15) {
-                    
-                    // MARK: Custom Navigation Bar
-                    customNavBar
                     
                     // MARK: User Profile Picture
                         Button {
@@ -93,7 +83,7 @@ struct ManageAccountView: View {
                                         .clipped()
                                         .cornerRadius(20)
                                 }
-                            } .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+                            }
 
                         }
                     
@@ -104,7 +94,7 @@ struct ManageAccountView: View {
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .frame(width: 200, alignment: .center)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.red)
                         .background(Color.white)
                     
                     Spacer()
@@ -127,6 +117,20 @@ struct ManageAccountView: View {
                     
                     // MARK: - Submit button
                     Button {
+                        persistImageToStorage()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Save")
+                                .foregroundColor(.green)
+                                .padding(.vertical, 10)
+                                .font(.system(size: 14, weight: .semibold))
+                            Spacer()
+                        } .background(Color.blue)
+                    }
+                    
+                    // MARK: - Submit button
+                    Button {
                         deleteUser()
                     } label: {
                         HStack {
@@ -138,19 +142,33 @@ struct ManageAccountView: View {
                             Spacer()
                         } .background(Color.blue)
                     }
+                    Text(self.saveStatusMessage)
+                        .foregroundColor(.red)
                 }
                 
+                
+                
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             }.navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: BackButton)
                 .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                     ImagePicker(image: $image)
-                    
                 }
         }
     }
     
     // MARK: Persist Image into Firebase Storage
     private func persistImageToStorage() {
+        if self.image == nil {
+            self.saveStatusMessage = "You must select an avatar image"
+            return
+        }
+        
+        if self.newEmail == "" {
+            self.saveStatusMessage = "You must change your name"
+            return
+        }
         //        let filename = UUID().uuidString
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
@@ -169,7 +187,7 @@ struct ManageAccountView: View {
                 }
                 
                 self.saveStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url?.absoluteString)
+                //print(url?.absoluteString)
                 
                 guard let url = url else {return }
                 self.saveInfo(imageProfileUrl: url)
@@ -178,7 +196,8 @@ struct ManageAccountView: View {
     }
     
     // MARK: Save Info Function
-    private func saveInfo(imageProfileUrl: URL) {        
+    private func saveInfo(imageProfileUrl: URL) {
+        
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let userData = ["email": self.newEmail, "uid": uid, "profileImageUrl": imageProfileUrl.absoluteString]
         FirebaseManager.shared.firestore.collection("users")
@@ -191,7 +210,7 @@ struct ManageAccountView: View {
 
                 print("Success")
                 if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = UIHostingController(rootView: Home())
+                    window.rootViewController = UIHostingController(rootView: HomeView(mainMessageViewModel: MainMessagesViewModel(), saveList: $saveList))
                     window.makeKeyAndVisible()
                 }
             }
@@ -199,24 +218,23 @@ struct ManageAccountView: View {
     
     // MARK: Delete User Function
     private func deleteUser() {
+        //guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         FirebaseManager.shared.auth.currentUser?.delete() { err in
                 if let err = err {
                     print(err)
                     self.saveStatusMessage = "\(err)"
                     return
                 }
-
                 print("Success")
                 if let window = UIApplication.shared.windows.first {
-                    window.rootViewController = UIHostingController(rootView: LoginView(didCompleteLoginProcess: {}))
+                    window.rootViewController = UIHostingController(rootView: LoginView(mainMessageViewModel: MainMessagesViewModel(),didCompleteLoginProcess: {}))
                     window.makeKeyAndVisible()
                 }
             }
     }
 }
 
-
-
+// MARK: Preview
 struct ManageAccountView_Previews: PreviewProvider {
     static var previews: some View {
         ManageAccountView()

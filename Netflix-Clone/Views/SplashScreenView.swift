@@ -1,59 +1,102 @@
-//
-//  SplashScreenView.swift
-//  Netflix-Clone
-//
-//  Created by Huy Bui Thanh on 29/08/2022.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 3
+ Author:
+    Bui Thanh Huy
+    Hoang Minh Quan
+    Nguyen Quoc Minh
+    Pham Huynh Ngoc Hue
+ ID:
+    s3740934
+    s3754450
+    s3758994
+    s3702554
+ Created  date: 29/08/2022
+ Last modified: 29/08/2022
+ Acknowledgement:
+ 
+ - https://www.youtube.com/watch?v=xXjYGamyREs&list=RDCMUCuP2vJ6kRutQBfRmdcI92mA&index=2
+ */
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct SplashScreenView: View {
     
     // MARK: Properties
-    @State private var isActive = false
-    @State private var size = 0.8
-    @State private var opacity = 0.5
+    @State var saveList: [SaveList] = []
+    @State var animationFinished: Bool = false
+    @State var animationStarted: Bool = false
+    @State var removeGif = false
     
     // MARK: Body
     var body: some View {
-        
-        // MARK: Set Background Color
-        ZStack {
-            Color.black.ignoresSafeArea()
-            if isActive {
-                // Change View
-                LoginView(didCompleteLoginProcess: {})
-            } else {
-                VStack {
-                    VStack {
-                        Image("Icon")
-                            .resizable()
-                            .scaledToFit()
-                            .aspectRatio(contentMode: .fit)
-                            .font(.system(size: 80))
-                            .foregroundColor(.red)
-                            .frame(width: 350.0, alignment: .center)
-                    }
-                    .scaleEffect(size)
-                    .opacity(opacity)
-                    .onAppear {
-                        withAnimation(.easeIn (duration: 1.2)) {
-                            self.size = 0.9
-                            self.opacity = 1.0
+        ZStack{
+
+            MainPageView()
+            ZStack {
+                
+               
+                Color.black.ignoresSafeArea()
+
+                if !removeGif {
+                    ZStack{
+                        if animationStarted {
+                            if animationFinished {
+                               Color.black.ignoresSafeArea()
+                            } else {
+                            AnimatedImage(url: getLogoURL())
+                                .aspectRatio(contentMode: .fit)
+                            }
+                        } else {
+                            // Showing first frame
+                            Image("logoStarted")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
                         }
                     }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { //
-                            self.isActive = true
-                        }
-                    }
+                    .animation(.none, value: animationFinished)
                 }
                 
-            } // else
+            }
+            .opacity(animationFinished ? 0:1)
         }
+        .onAppear{
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                
+                animationStarted = true
+                // This gif will take about 2.7s to finish
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.7) {
+                    
+                    // Animation has problems will trigger the gif again
+                    withAnimation(.easeInOut(duration: 2)) {
+                        animationFinished = true
+                        
+                    }
+                    
+                    // Gif Ends then switch view
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.7) {
+                        removeGif = true
+                    }
+                }
+            }
+
+        }
+    }
+    
+    // MARK: Function get logo.gif
+    func getLogoURL() -> URL{
+        let bundle = Bundle.main.path(forResource: "logo", ofType: "gif")
+        let url = URL(fileURLWithPath: bundle ?? "")
+        
+        return url
     }
 }
 
+// MARK: Preview
 struct SplashScreenView_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreenView()
